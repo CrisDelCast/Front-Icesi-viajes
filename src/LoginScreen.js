@@ -1,6 +1,32 @@
-import * as React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function MyComponent() {
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/auth/login", loginData);
+      console.log("Token:", response.data.token);
+      // Manejar el token de autenticación (por ejemplo, guardarlo en el almacenamiento local)
+    } catch (error) {
+      console.error("Error de inicio de sesión:", error);
+      // Manejar errores de inicio de sesión (por ejemplo, mostrar un mensaje de error al usuario)
+    }
+  };
+
   return (
     <>
       <div className="div">
@@ -8,11 +34,26 @@ function MyComponent() {
           <div className="div-3">
             <div className="div-4">Atlasy</div>
             <div className="div-5">Ingresa a tu cuenta</div>
-            <div className="div-6">E-mail</div>
-            <div className="div-7">mi.correo@mail.com</div>
-            <div className="div-8">Contraseña</div>
-            <div className="div-9">contraseña-segura</div>
-            <div className="div-10">Ingresa</div>
+            <form onSubmit={handleSubmit}>
+              <div className="div-6">E-mail</div>
+              <input
+                type="text"
+                name="username"
+                value={loginData.username}
+                onChange={handleChange}
+                className="div-7"
+              />
+              <div className="div-8">Contraseña</div>
+              <input
+                type="password"
+                name="password"
+                value={loginData.password}
+                onChange={handleChange}
+                className="div-9"
+              />
+              <div className="div-6"></div>
+              <button type="submit" className="div-10">Ingresar</button>
+            </form>
             <div className="div-11">
               <div className="div-12">
                 <div className="div-13" />
@@ -28,7 +69,6 @@ function MyComponent() {
             className="img"
             style={{ maxWidth: "50%", height: "auto", maxHeight: "740px" }}
           />
-
         </div>
       </div>
       <style jsx>{`
@@ -92,41 +132,13 @@ function MyComponent() {
             margin: 40px 10px 0;
           }
         }
-        .div-6 {
-          color: var(--sgivBlack-900, #0d0c0c);
-          margin-top: 51px;
-          font: 18px Lato, sans-serif;
-        }
-        @media (max-width: 991px) {
-          .div-6 {
-            margin-top: 40px;
-          }
-        }
-        .div-7 {
-          align-items: start;
-          border-radius: 11.009px;
-          border-color: rgba(194, 196, 196, 1);
-          border-style: solid;
-          border-width: 1px;
-          background-color: var(--sgivWhite-100, #fdfdfd);
-          margin-top: 28px;
-          color: var(--sgivGray-400, #c2c4c4);
-          white-space: nowrap;
-          justify-content: center;
-          padding: 10px 22px;
-          font: 20px Lato, sans-serif;
-        }
-        @media (max-width: 991px) {
-          .div-7 {
-            white-space: initial;
-            padding: 0 20px;
-          }
-        }
+        .div-6,
         .div-8 {
           color: var(--sgivBlack-900, #0d0c0c);
           margin-top: 29px;
           font: 18px Lato, sans-serif;
         }
+        .div-7,
         .div-9 {
           align-items: start;
           border-radius: 11.009px;
@@ -142,6 +154,7 @@ function MyComponent() {
           font: 20px Lato, sans-serif;
         }
         @media (max-width: 991px) {
+          .div-7,
           .div-9 {
             white-space: initial;
             padding: 0 20px;
@@ -152,7 +165,7 @@ function MyComponent() {
           border-radius: 10px;
           background-color: var(--sgivBlue-700, #03318c);
           align-self: center;
-          margin-top: 68px;
+          margin-top: 10px; /* Modificado */
           color: var(--White-100, #fdfdfd);
           white-space: nowrap;
           padding: 6px 10px;
@@ -160,7 +173,7 @@ function MyComponent() {
         }
         @media (max-width: 991px) {
           .div-10 {
-            margin-top: 40px;
+            margin-top: 20px; /* Modificado */
             white-space: initial;
             padding: 0 20px;
           }
