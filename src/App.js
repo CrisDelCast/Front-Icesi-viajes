@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import MyComponent from './LoginScreen';
+import Login from './Screen/LoginScreen';
+import SignIn from './Screen/SignInScreen';
 
 function App() {
   return (
     <div className="App">
-      <MyComponent />
+      <Login />
     </div>
+
   );
 }
 
