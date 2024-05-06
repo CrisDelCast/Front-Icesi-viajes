@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [loginData, setLoginData] = useState({
-    login: "",
-    password: "",
+    login: '',
+    password: '',
   });
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,22 +21,25 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(loginData)
-      const response = await axios.post("http://localhost:5433/api/usuarios/autenticar", loginData);
+      console.log(loginData);
+      const response = await axios.post('http://localhost:5433/api/usuarios/autenticar', loginData);
       const usuario = response.data;
-      console.log("Usuario autenticado:", usuario);
-      setMessage("Autenticación exitosa");
+      console.log('Usuario autenticado:', usuario);
+
+      // Almacenar el token de autenticación en el localStorage
+      localStorage.setItem('token', usuario.token);
+
+      // Redirigir al usuario a la pantalla de inicio
+      navigate('/home');
     } catch (error) {
-      
-      console.error("Error de inicio de sesión:", error);
+      console.error('Error de inicio de sesión:', error);
       if (error.response && error.response.status === 401) {
-        setMessage("Credenciales inválidas");
+        setMessage('Credenciales inválidas');
       } else {
-        setMessage("Error de inicio de sesión");
+        setMessage('Error de inicio de sesión');
       }
     }
   };
-
   
 
   return (
