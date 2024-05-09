@@ -1,18 +1,19 @@
 import * as React from "react";
+import { Link } from 'react-router-dom';
 
 function DestinoHome() {
   return (
     <>
       <div className="div">
         <div className="div-2">
-          <div className="div-3">
-            <span style="font-family: Poppins, sans-serif; font-weight: 700; color: rgba(253,253,253,1);">
+        <Link to="/home"><div className="div-3">
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
               A
             </span>
-            <span style="font-family: Redressed, sans-serif; font-weight: 400; color: rgba(253,253,253,1);">
+            <span style={{ fontFamily: "Redressed, sans-serif", fontWeight: 400, color: "rgba(253,253,253,1)" }}>
               t
             </span>
-          </div>
+          </div></Link>
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/e281c1b67a149e4da4884a9c14920c19f8a65bac747ed68fc00216c3d3cd4908?"
@@ -45,7 +46,7 @@ function DestinoHome() {
           />
           <img
             loading="lazy"
-            srcSet="..."
+            srcSet="/USER.png"
             className="img-7"
           />
         </div>
@@ -57,6 +58,28 @@ function DestinoHome() {
                   <div className="div-8">Destinos</div>
                 </div>
                 <div className="column-2" />
+                <div className="div-18">
+        <div className="div-19">
+          <div className="div-20">Buscar</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?"
+            className="img"
+          />
+        </div>
+        <div className="div-21">
+          <div className="div-22">Filtrar</div>
+          <div className="div-23">
+            <Link to="/DestinoFilter"><div className="div-24">f</div></Link>
+          </div>
+        </div>
+        <div className="div-25">
+          <div className="div-26">Agregar</div>
+          <div className="div-27">
+          <Link to="/DestinoAdd"><div className="div-28">+</div></Link>
+          </div>
+        </div>
+      </div>
               </div>
             </div>
           </div>
@@ -496,10 +519,314 @@ function DestinoHome() {
             margin-top: 40px;
           }
         }
+
+        .div-18 {
+          justify-content: end;
+          display: flex;
+          max-width: 848px;
+          padding-left: 80px;
+          gap: 20px;
+          white-space: nowrap;
+        }
+        @media (max-width: 991px) {
+          .div-18 {
+            flex-wrap: wrap;
+            padding-left: 20px;
+            white-space: initial;
+          }
+        }
+        .div-19 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+          font-size: 40px;
+          color: #000;
+          font-weight: 400;
+          margin: auto 0;
+        }
+        @media (max-width: 991px) {
+          .div-19 {
+            white-space: initial;
+          }
+        }
+        .div-20 {
+          font-family: Lato, sans-serif;
+        }
+        .img {
+          aspect-ratio: 1;
+          object-fit: auto;
+          object-position: center;
+          width: 40px;
+          margin: auto 0;
+        }
+        .div-21 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+        }
+        @media (max-width: 991px) {
+          .div-21 {
+            white-space: initial;
+          }
+        }
+        .div-22 {
+          color: #000;
+          margin: auto 0;
+          font: 400 40px Lato, sans-serif;
+        }
+        .div-23 {
+          display: flex;
+          flex-direction: column;
+          font-size: 48px;
+          color: var(--sgivBlue-700, #03318c);
+          font-weight: 500;
+          justify-content: center;
+        }
+        @media (max-width: 991px) {
+          .div-23 {
+            font-size: 40px;
+            white-space: initial;
+          }
+        }
+        .div-24 {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 89px;
+          height: 89px;
+          padding: 0 26px;
+          display:flex;
+        }
+        @media (max-width: 991px) {
+          .div-24 {
+            font-size: 40px;
+            white-space: center;
+            padding: 0 20px;
+            
+          }
+        }
+        .div-25 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+        }
+        @media (max-width: 991px) {
+          .div-25 {
+            white-space: initial;
+          }
+        }
+        .div-26 {
+          color: #000;
+          margin: auto 0;
+          font: 400 40px Lato, sans-serif;
+        }
+        .div-27 {
+          display: flex;
+          flex-direction: column;
+          font-size: 48px;
+          color: var(--sgivBlue-700, #03318c);
+          font-weight: 500;
+          justify-content: center;
+        }
+        @media (max-width: 991px) {
+          .div-27 {
+            font-size: 40px;
+            white-space: initial;
+          }
+        }
+        .div-28 {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 89px;
+          height: 89px;
+          padding: 0 26px;
+          display:flex;
+        }
+        @media (max-width: 991px) {
+          .div-28 {
+            font-size: 40px;
+            white-space: initial;
+            padding: 0 20px;
+          }
+        }
       `}</style>
     </>
   );
 }
 export default DestinoHome;
+
+
+
+function busqueda() {
+  return (
+    <>
+      <div className="div">
+        <div className="div-2">
+          <div className="div-3">Buscar</div>
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?"
+            className="img"
+          />
+        </div>
+        <div className="div-4">
+          <div className="div-5">Filtrar</div>
+          <div className="div-6">
+            <div className="div-7">f</div>
+          </div>
+        </div>
+        <div className="div-8">
+          <div className="div-9">Agregar</div>
+          <div className="div-10">
+            <div className="div-11">+</div>
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
+        .div {
+          justify-content: end;
+          display: flex;
+          max-width: 848px;
+          padding-left: 80px;
+          gap: 20px;
+          white-space: nowrap;
+        }
+        @media (max-width: 991px) {
+          .div {
+            flex-wrap: wrap;
+            padding-left: 20px;
+            white-space: initial;
+          }
+        }
+        .div-2 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+          font-size: 40px;
+          color: #000;
+          font-weight: 400;
+          margin: auto 0;
+        }
+        @media (max-width: 991px) {
+          .div-2 {
+            white-space: initial;
+          }
+        }
+        .div-3 {
+          font-family: Lato, sans-serif;
+        }
+        .img {
+          aspect-ratio: 1;
+          object-fit: auto;
+          object-position: center;
+          width: 40px;
+          margin: auto 0;
+        }
+        .div-4 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+        }
+        @media (max-width: 991px) {
+          .div-4 {
+            white-space: initial;
+          }
+        }
+        .div-5 {
+          color: #000;
+          margin: auto 0;
+          font: 400 40px Lato, sans-serif;
+        }
+        .div-6 {
+          display: flex;
+          flex-direction: column;
+          font-size: 48px;
+          color: var(--sgivBlue-700, #03318c);
+          font-weight: 500;
+          justify-content: center;
+        }
+        @media (max-width: 991px) {
+          .div-6 {
+            font-size: 40px;
+            white-space: initial;
+          }
+        }
+        .div-7 {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 89px;
+          height: 89px;
+          padding: 0 26px;
+        }
+        @media (max-width: 991px) {
+          .div-7 {
+            font-size: 40px;
+            white-space: initial;
+            padding: 0 20px;
+          }
+        }
+        .div-8 {
+          justify-content: center;
+          display: flex;
+          gap: 10px;
+        }
+        @media (max-width: 991px) {
+          .div-8 {
+            white-space: initial;
+          }
+        }
+        .div-9 {
+          color: #000;
+          margin: auto 0;
+          font: 400 40px Lato, sans-serif;
+        }
+        .div-10 {
+          display: flex;
+          flex-direction: column;
+          font-size: 48px;
+          color: var(--sgivBlue-700, #03318c);
+          font-weight: 500;
+          justify-content: center;
+        }
+        @media (max-width: 991px) {
+          .div-10 {
+            font-size: 40px;
+            white-space: initial;
+          }
+        }
+        .div-11 {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 89px;
+          height: 89px;
+          padding: 0 26px;
+        }
+        @media (max-width: 991px) {
+          .div-11 {
+            font-size: 40px;
+            white-space: initial;
+            padding: 0 20px;
+          }
+        }
+      `}</style>
+    </>
+  );
+}
+
 
 

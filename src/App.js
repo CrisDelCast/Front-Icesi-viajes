@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './Screen/LoginScreen';
 import SignIn from './Screen/SignInScreen';
 import Home from './Screen/HomeScreen';
+import DestinoHome from './Screen/DestinoHomeScreen'; 
+import ClientesScreen from './Screen/ClientesScreen'; 
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path="/DestinoHome" element={<PrivateRoute><DestinoHome /></PrivateRoute>} /> 
+        <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

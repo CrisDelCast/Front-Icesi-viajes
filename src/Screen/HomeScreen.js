@@ -1,4 +1,7 @@
 import * as React from "react";
+import { Link } from 'react-router-dom';
+
+
 
 function Home() {
   return (
@@ -59,20 +62,6 @@ function Home() {
                 <div className="column-2">
                   <div className="div-9">
                     <div className="div-10">
-                      <div className="column-3">
-                        <img
-                          loading="lazy"
-                          srcSet="..."
-                          className="img-8"
-                        />
-                      </div>
-                      <div className="column-4">
-                        <img
-                          loading="lazy"
-                          srcSet="..."
-                          className="img-9"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -82,11 +71,13 @@ function Home() {
           <div className="div-11">
             <div className="div-12">
               <div className="column-5">
+              <Link to="/DestinoHome">
                 <img
                   loading="lazy"
                   src="/DESTINOS.png"
                   className="img-10"
                 />
+                </Link>
               </div>
               <div className="column-6">
                 <img
@@ -96,11 +87,13 @@ function Home() {
                 />
               </div>
               <div className="column-7">
+              <Link to="/ClientesScreen">
                 <img
                   loading="lazy"
                   srcSet="/CLIENTES.png"
                   className="img-12"
                 />
+                </Link>
               </div>
             </div>
           </div>
