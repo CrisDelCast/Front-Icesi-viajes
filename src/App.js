@@ -4,6 +4,7 @@ import SignIn from './Screen/SignInScreen';
 import Home from './Screen/HomeScreen';
 import DestinoHome from './Screen/DestinoHomeScreen'; 
 import ClientesScreen from './Screen/ClientesScreen'; 
+import ClienteEditScreen from './Screen/ClienteEditScreen';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/DestinoHome" element={<PrivateRoute><DestinoHome /></PrivateRoute>} /> 
         <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
+        <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} /> 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

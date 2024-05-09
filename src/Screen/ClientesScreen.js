@@ -10,7 +10,7 @@ function ClientesScreen() {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await axios.get('http://localhost:5433/api/usuarios/usuariostotal');
+        const response = await axios.get('http://localhost:5433/api/cliente/clientestotal');
         setClientes(response.data);
       } catch (error) {
         setError('Error al obtener los clientes');
@@ -82,6 +82,7 @@ function ClientesScreen() {
                   <div className="div-8">Clientes</div>
                 </div>
                 <div className="column-2">
+                  
                   <div className="div-9">
                     <img
                       loading="lazy"
@@ -102,14 +103,17 @@ function ClientesScreen() {
           <div className="div-14">
             <div className="div-15">
                 <div className="div-16">Cliente</div>
-                {clientes.map(cliente => (
-                <div key={cliente.id} className="div-17">{cliente.nombre}</div>
-                ))}
+                  {clientes.map(cliente => (
+                <Link to={`/ClienteEditScreen`} key={cliente.idClie}>
+                  <div className="div-17">{cliente.nombre}</div>
+                </Link>
+              ))}
+
             </div>
             <div className="div-20">
                 <div className="div-21">ID</div>
                 {clientes.map(cliente => (
-                <div key={cliente.id} className="div-22">{cliente.id}</div>
+                <div key={cliente.id} className="div-22">{cliente.idClie}</div>
                 ))}
             </div>
             <div className="div-25">
@@ -121,7 +125,7 @@ function ClientesScreen() {
             <div className="div-30">
                 <div className="div-31">Fecha Vinc.</div>
                 {clientes.map(cliente => (
-                <div key={cliente.id} className="div-32">{cliente.fechaVinculacion}</div>
+                <div key={cliente.id} className="div-32">{cliente.fechaCreacion}</div>
                 ))}
             </div>
             <div className="div-35">
