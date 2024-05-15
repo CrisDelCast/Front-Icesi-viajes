@@ -80,11 +80,13 @@ function Home() {
                 </Link>
               </div>
               <div className="column-6">
+              <Link to ="/PlanesScreen">
                 <img
                   loading="lazy"
                   src="/PLANES.png"
                   className="img-11"
                 />
+                </Link>
               </div>
               <div className="column-7">
               <Link to="/ClientesScreen">
