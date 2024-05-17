@@ -35,7 +35,7 @@ function ClientesScreen() {
     <>
       <div className="div">
         <div className="div-2">
-        <Link to="/home"><div className="div-3">
+          <Link to="/home"><div className="div-3">
             <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
               A
             </span>
@@ -82,7 +82,6 @@ function ClientesScreen() {
                   <div className="div-8">Clientes</div>
                 </div>
                 <div className="column-2">
-                  
                   <div className="div-9">
                     <img
                       loading="lazy"
@@ -102,31 +101,30 @@ function ClientesScreen() {
           </div>
           <div className="div-14">
             <div className="div-15">
-                <div className="div-16">Cliente</div>
-                  {clientes.map(cliente => (
-                <Link to={`/ClienteEditScreen`} key={cliente.idClie}>
+              <div className="div-16">Cliente</div>
+              {clientes.map(cliente => (
+                <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`} key={cliente.idClie}>
                   <div className="div-17">{cliente.nombre}</div>
                 </Link>
               ))}
-
             </div>
             <div className="div-20">
-                <div className="div-21">ID</div>
-                {clientes.map(cliente => (
-                <div key={cliente.id} className="div-22">{cliente.idClie}</div>
-                ))}
+              <div className="div-21">ID</div>
+              {clientes.map(cliente => (
+                <div key={cliente.idClie} className="div-22">{cliente.idClie}</div>
+              ))}
             </div>
             <div className="div-25">
-                <div className="div-26">Estado</div>
-                {clientes.map(cliente => (
-                <div key={cliente.id} className="div-27">{cliente.estado}</div>
-                ))}
+              <div className="div-26">Estado</div>
+              {clientes.map(cliente => (
+                <div key={cliente.idClie} className="div-27">{cliente.estado}</div>
+              ))}
             </div>
             <div className="div-30">
-                <div className="div-31">Fecha Vinc.</div>
-                {clientes.map(cliente => (
-                <div key={cliente.id} className="div-32">{cliente.fechaCreacion}</div>
-                ))}
+              <div className="div-31">Fecha Vinc.</div>
+              {clientes.map(cliente => (
+                <div key={cliente.idClie} className="div-32">{cliente.fechaCreacion}</div>
+              ))}
             </div>
             <div className="div-35">
               <img
@@ -259,7 +257,10 @@ function ClientesScreen() {
         }
         .div-6 {
           width: 100%;
-          max-width: 1418px;
+          max-width: 1200px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
         @media (max-width: 991px) {
           .div-6 {
@@ -267,284 +268,175 @@ function ClientesScreen() {
           }
         }
         .div-7 {
-          gap: 20px;
           display: flex;
-        }
-        @media (max-width: 991px) {
-          .div-7 {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0px;
-          }
+          flex-wrap: wrap;
+          gap: 40px;
         }
         .column {
           display: flex;
           flex-direction: column;
-          line-height: normal;
-          width: 38%;
-          margin-left: 0px;
+          flex: 1;
+          gap: 16px;
+          max-width: 100%;
         }
         @media (max-width: 991px) {
           .column {
-            width: 100%;
+            max-width: 100%;
           }
         }
         .div-8 {
-          color: var(--sgivBlue-700, #03318c);
-          font: 500 128px Poppins, sans-serif;
-        }
-        @media (max-width: 991px) {
-          .div-8 {
-            max-width: 100%;
-            margin-top: 40px;
-            font-size: 40px;
-          }
+          color: var(--dl-color-gray-01, #333);
+          font-family: Poppins, sans-serif;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.25;
         }
         .column-2 {
           display: flex;
           flex-direction: column;
-          line-height: normal;
-          width: 62%;
-          margin-left: 20px;
-        }
-        @media (max-width: 991px) {
-          .column-2 {
-            width: 100%;
-          }
+          flex: 1;
+          max-width: 100%;
         }
         .div-9 {
-          justify-content: end;
-          display: flex;
-          padding-left: 80px;
-          gap: 20px;
-          align-self: stretch;
-          white-space: nowrap;
-          margin: auto 0;
-        }
-        @media (max-width: 991px) {
-          .div-9 {
-            margin-top: 40px;
-            flex-wrap: wrap;
-            white-space: initial;
-          }
-        }
-        .img-7 {
-          aspect-ratio: 1;
-          object-fit: auto;
-          object-position: center;
-          width: 40px;
-          margin: auto 0;
-        }
-        .div-10 {
-          justify-content: center;
-          display: flex;
-          gap: 10px;
-        }
-        @media (max-width: 991px) {
-          .div-10 {
-            white-space: initial;
-          }
-        }
-        .div-11 {
-          display: flex;
-          flex-direction: column;
-          font-size: 48px;
-          color: var(--sgivBlue-700, #03318c);
-          font-weight: 500;
-          justify-content: center;
-        }
-        @media (max-width: 991px) {
-          .div-11 {
-            font-size: 40px;
-            white-space: initial;
-          }
-        }
-        .div-12 {
-          justify-content: center;
-          display: flex;
-          gap: 10px;
-        }
-        @media (max-width: 991px) {
-          .div-12 {
-            white-space: initial;
-          }
-        }
-        .div-13 {
-          display: flex;
-          flex-direction: column;
-          font-size: 48px;
-          color: var(--sgivBlue-700, #03318c);
-          font-weight: 500;
-          justify-content: center;
-        }
-        @media (max-width: 991px) {
-          .div-13 {
-            font-size: 40px;
-            white-space: initial;
-          }
-        }
-        .div-14 {
-          align-self: center;
-          display: flex;
-          margin-top: 75px;
-          width: 1174px;
-          max-width: 100%;
-          gap: 20px;
-          justify-content: space-between;
-          padding: 0 20px;
-        }
-        @media (max-width: 991px) {
-          .div-14 {
-            flex-wrap: wrap;
-            margin-top: 40px;
-          }
-        }
-        .div-15 {
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-          font-size: 40px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          font-weight: 400;
-        }
-        .div-16 {
-          color: var(--sgivBlue-700, #03318c);
-          font-family: Lato, sans-serif;
-        }
-        .div-17 {
-          font-family: Lato, sans-serif;
-          margin: 40px 28px 0 0;
-        }
-        @media (max-width: 991px) {
-          .div-17 {
-            margin-right: 10px;
-          }
-        }
-        .div-18 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-19 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-20 {
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-          font-size: 40px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          font-weight: 400;
-          white-space: nowrap;
-        }
-        @media (max-width: 991px) {
-          .div-20 {
-            white-space: initial;
-          }
-        }
-        .div-21 {
-          color: var(--sgivBlue-700, #03318c);
-          font-family: Lato, sans-serif;
-        }
-        .div-22 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-23 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-24 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-25 {
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-          font-size: 40px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          font-weight: 400;
-          white-space: nowrap;
-        }
-        @media (max-width: 991px) {
-          .div-25 {
-            white-space: initial;
-          }
-        }
-        .div-26 {
-          color: var(--sgivBlue-700, #03318c);
-          font-family: Lato, sans-serif;
-        }
-        .div-27 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-28 {
-          color: var(--sgivGray-400, #c2c4c4);
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-29 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-30 {
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-          font-size: 40px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          font-weight: 400;
-        }
-        .div-31 {
-          color: var(--sgivBlue-700, #03318c);
-          font-family: Lato, sans-serif;
-        }
-        .div-32 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-33 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-34 {
-          font-family: Lato, sans-serif;
-          margin-top: 40px;
-        }
-        .div-35 {
-          justify-content: center;
           align-items: center;
           display: flex;
-          padding-top: 80px;
           flex-direction: column;
+          justify-content: center;
         }
-        @media (max-width: 991px) {
-          .div-35 {
-            display: none;
-          }
+        .img-7 {
+          object-fit: cover;
+        }
+        .div-10 {
+          align-items: flex-start;
+          border-radius: 50%;
+          display: flex;
+          justify-content: flex-start;
+        }
+        .div-11 {
+          background-color: #eff4ff;
+          display: flex;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 8px 24px;
+        }
+        .div-12 {
+          border-radius: 50%;
+          display: flex;
+          font-size: 12px;
+          font-weight: 600;
+          position: absolute;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .div-13 {
+          background-color: #eff4ff;
+          display: flex;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 8px 24px;
+        }
+        .div-14 {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          margin-top: 19px;
+          padding: 0 60px;
+          gap: 12px;
+        }
+        .div-15 {
+          align-items: flex-start;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          max-width: 100%;
+        }
+        .div-16 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .div-17 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 9px;
+        }
+        .div-20 {
+          align-items: flex-start;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          max-width: 100%;
+        }
+        .div-21 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .div-22 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 9px;
+        }
+        .div-25 {
+          align-items: flex-start;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          max-width: 100%;
+        }
+        .div-26 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .div-27 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 9px;
+        }
+        .div-30 {
+          align-items: flex-start;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          max-width: 100%;
+        }
+        .div-31 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .div-32 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 9px;
+        }
+        .div-35 {
+          display: flex;
+          flex-direction: column;
+          margin-left: 33px;
+          gap: 30px;
         }
         .img-8 {
-          aspect-ratio: 0.88;
-          object-fit: auto;
-          object-position: center;
-          width: 42px;
-          margin-top: 8px;
+          object-fit: cover;
         }
         .img-9 {
-          aspect-ratio: 0.88;
-          object-fit: auto;
-          object-position: center;
-          width: 42px;
-          margin-top: 40px;
+          object-fit: cover;
         }
         .img-10 {
-          aspect-ratio: 0.88;
-          object-fit: auto;
-          object-position: center;
-          width: 42px;
-          margin-top: 40px;
+          object-fit: cover;
         }
       `}</style>
     </>
@@ -552,5 +444,3 @@ function ClientesScreen() {
 }
 
 export default ClientesScreen;
-
-

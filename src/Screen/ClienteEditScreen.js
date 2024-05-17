@@ -1,84 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function ClienteEditScreen() {
+  let { id } = useParams();
+  const [cliente, setCliente] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const paramValue = new URLSearchParams(window.location.search).get('id');
+  
 
-    const { id } = useParams(); // Obtener el ID del cliente de la URL
-    const [cliente, setCliente] = useState(null);
-    const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const fetchCliente = async () => {
-        try {
-          const response = await axios.get(`http://localhost:5433/api/cliente/${id}`);
-          setCliente(response.data);
-          setLoading(false);
-        } catch (error) {
-          console.error('Error al cargar el cliente:', error);
-          setLoading(false);
-        }
-      };
-  
-      fetchCliente();
-    }, [id]);
-  
-    if (loading) {
-      return <div>Cargando...</div>;
-    }
-  
-    if (!cliente) {
-      return <div>No se encontró el cliente.</div>;
-    }
-  
+  useEffect(() => {
+    const fetchCliente = async () => {
+      try {
+        console.log("---------"+paramValue);
+        const response = await axios.get(`http://localhost:5433/api/cliente/${paramValue}`);
+        
+        setCliente(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al cargar el cliente:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchCliente();
+  }, [id]);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!cliente) {
+    return <div>No se encontró el cliente.</div>;
+  }
 
   return (
     <>
       <div className="div">
         <div className="div-2">
-        <Link to="/home"><div className="div-3">
-            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
-              A
-            </span>
-            <span style={{ fontFamily: "Redressed, sans-serif", fontWeight: 400, color: "rgba(253,253,253,1)" }}>
-              t
-            </span>
-          </div></Link>
+          <Link to="/home">
+            <div className="div-3">
+              <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
+                A
+              </span>
+              <span style={{ fontFamily: "Redressed, sans-serif", fontWeight: 400, color: "rgba(253,253,253,1)" }}>
+                t
+              </span>
+            </div>
+          </Link>
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0791ec8865c65f2d8e1bc6b80abb74921e9268f4bcc244d7c91456a14552788f?"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b247f7b4893c631e3de103969e2913c0a36ebe731eaa074f71ee0c638ba2a4bf?"
             className="img"
           />
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/5f34a1f5e4dbedde619f27c3991cfb66b4683e513de4c1bbac1608fe80f5731e?"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2079a85e87fe28ef3da96d440df0921f278f613b3d3ec472d40d0aec4042b5?"
             className="img-2"
           />
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0d4665ad8fe15680a226493199bda22d567f69a56ad0313dc0d0b3ead79b0e4c?"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e1abd72088f4cccca48528fe56d5bff40fbc4093915d9b86a4b2e62cd7cd3c55?"
             className="img-3"
           />
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/71d9a946d7fec0e636147625bf8ac4ebf9a9e16b1c84d8e8cd95a95c1d1f0569?"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9e285f278ad0e522613b700338b6d9c2a5dd473b518cfcceb9127534efc9727?"
             className="img-4"
           />
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/29fd0db5ff96fb23d39652b9c9b1b1f8813f24a5d1b1ed5a426b08f094e42cdf?"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2443a2c0f42ded4de666d7ef9824c3654fa1e4c94742127e0e2be5b5e62b1a88?"
             className="img-5"
           />
           <img
             loading="lazy"
             srcSet="..."
             className="img-6"
-          />
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="img-7"
           />
         </div>
         <div className="div-4">
@@ -94,7 +92,7 @@ function ClienteEditScreen() {
                   className="img-8"
                 />
               </div>
-              <div className="div-11">ID </div>
+              <div className="div-11">ID</div>
               <div className="div-12">
                 <div className="div-13">{cliente.idClie}</div>
                 <img
@@ -112,14 +110,15 @@ function ClienteEditScreen() {
                   className="img-10"
                 />
               </div>
-            </div>
-            <div className="div-17">
-              <img
-                loading="lazy"
-                srcSet="..."
-                className="img-11"
-              />
-              <div className="div-18">Guardar</div>
+              <div className="div-17">Fecha de Vinculación</div>
+              <div className="div-18">
+                <div className="div-19">{cliente.fechaCreacion}</div>
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e36374fe98c71f0713b599651304c0cdd70681ae7adf534f9da2c36f226be281?"
+                  className="img-11"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -128,9 +127,7 @@ function ClienteEditScreen() {
         .div {
           background-color: var(--sgivWhite-100, #fdfdfd);
           display: flex;
-          gap: 20px;
-          justify-content: space-between;
-          margin-left: -1px;
+          gap: 0px;
         }
         @media (max-width: 991px) {
           .div {
@@ -138,20 +135,19 @@ function ClienteEditScreen() {
           }
         }
         .div-2 {
-          align-items: start;
+          align-items: center;
           background-color: #03318c;
           display: flex;
           flex-direction: column;
           font-size: 47px;
           color: var(--sgivWhite-100, #fdfdfd);
           font-weight: 900;
-          padding: 30px 22px;
+          padding: 30px 20px;
         }
         @media (max-width: 991px) {
           .div-2 {
             display: none;
             font-size: 40px;
-            padding: 0 20px;
           }
         }
         .div-3 {
@@ -210,29 +206,12 @@ function ClienteEditScreen() {
           width: 40px;
           margin-top: 30px;
         }
-        .img-7 {
-          aspect-ratio: 1.08;
-          object-fit: auto;
-          object-position: center;
-          width: 58px;
-          border-color: rgba(239, 244, 245, 1);
-          border-style: solid;
-          border-width: 2px;
-          border-radius: 50%;
-          align-self: center;
-          margin-top: 316px;
-        }
-        @media (max-width: 991px) {
-          .img-7 {
-            margin-top: 40px;
-          }
-        }
         .div-4 {
-          justify-content: center;
+          background-color: #fff;
           display: flex;
           flex-direction: column;
-          margin: auto 0;
-          padding: 0 20px;
+          flex: 1;
+          padding: 75px 0;
         }
         @media (max-width: 991px) {
           .div-4 {
@@ -240,159 +219,150 @@ function ClienteEditScreen() {
           }
         }
         .div-5 {
-          color: var(--Black-900, #121211);
-          font: 500 64px Poppins, sans-serif;
-        }
-        @media (max-width: 991px) {
-          .div-5 {
-            max-width: 100%;
-            font-size: 40px;
-          }
+          align-items: center;
+          color: var(--dl-color-gray-01, #333);
+          display: flex;
+          font-family: Poppins, sans-serif;
+          font-size: 22px;
+          font-weight: 700;
+          justify-content: center;
+          line-height: 1.25;
+          margin-top: 16px;
+          max-width: 100%;
         }
         .div-6 {
-          align-content: center;
-          flex-wrap: wrap;
+          align-items: center;
           display: flex;
-          margin-top: 53px;
-          padding-right: 5px;
-          gap: 20px;
-          font-size: 24px;
-          font-weight: 400;
+          justify-content: center;
+          margin-top: 39px;
+          padding: 0 60px;
         }
         @media (max-width: 991px) {
           .div-6 {
             max-width: 100%;
-            padding-right: 20px;
-            margin-top: 40px;
+            padding: 0 20px;
           }
         }
         .div-7 {
+          align-items: flex-start;
           display: flex;
           flex-direction: column;
-          color: var(--sgivBlue-700, #03318c);
-          margin: auto 0;
+          gap: 24px;
+          max-width: 1200px;
+          width: 100%;
+        }
+        @media (max-width: 991px) {
+          .div-7 {
+            max-width: 100%;
+          }
         }
         .div-8 {
+          color: #686868;
           font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
         .div-9 {
           display: flex;
-          margin-top: 10px;
-          padding-right: 17px;
-          gap: 20px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          gap: 30px;
+          margin-top: 9px;
         }
         .div-10 {
+          color: #686868;
           font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
         .img-8 {
           aspect-ratio: 1;
           object-fit: auto;
           object-position: center;
-          width: 23px;
-          fill: #000;
-          margin: auto 0;
+          width: 25px;
         }
         .div-11 {
+          color: #686868;
           font-family: Poppins, sans-serif;
-          margin-top: 40px;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 24px;
         }
         .div-12 {
           display: flex;
-          margin-top: 10px;
-          padding-right: 17px;
-          gap: 20px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          white-space: nowrap;
-          justify-content: space-between;
-        }
-        @media (max-width: 991px) {
-          .div-12 {
-            white-space: initial;
-          }
+          align-items: center;
+          position: relative;
+          gap: 30px;
+          margin-top: 9px;
         }
         .div-13 {
+          color: #686868;
           font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
         .img-9 {
           aspect-ratio: 1;
           object-fit: auto;
           object-position: center;
-          width: 23px;
-          fill: #000;
-          margin: auto 0;
+          width: 25px;
         }
         .div-14 {
+          color: #686868;
           font-family: Poppins, sans-serif;
-          margin-top: 40px;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 24px;
         }
         .div-15 {
           display: flex;
-          margin-top: 10px;
-          padding-right: 17px;
-          gap: 20px;
-          color: var(--sgivBlack-900, #0d0c0c);
-          white-space: nowrap;
-          justify-content: space-between;
-        }
-        @media (max-width: 991px) {
-          .div-15 {
-            white-space: initial;
-          }
+          align-items: center;
+          position: relative;
+          gap: 30px;
+          margin-top: 9px;
         }
         .div-16 {
+          color: #686868;
           font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
         .img-10 {
           aspect-ratio: 1;
           object-fit: auto;
           object-position: center;
-          width: 23px;
-          fill: #000;
-          margin: auto 0;
+          width: 25px;
         }
         .div-17 {
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-          color: var(--White-100, #fdfdfd);
-          white-space: nowrap;
-          padding: 56px 34px 0;
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 24px;
         }
-        @media (max-width: 991px) {
-          .div-17 {
-            max-width: 100%;
-            white-space: initial;
-            padding: 0 20px;
-          }
+        .div-18 {
+          display: flex;
+          align-items: center;
+          position: relative;
+          gap: 30px;
+          margin-top: 9px;
+        }
+        .div-19 {
+          color: #686868;
+          font-family: Poppins, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
         .img-11 {
           aspect-ratio: 1;
           object-fit: auto;
           object-position: center;
-          width: 100%;
-        }
-        .div-18 {
-          font-family: Poppins, sans-serif;
-          justify-content: center;
-          border-radius: 10px;
-          background-color: var(--sgivBlue-700, #03318c);
-          align-self: center;
-          margin-top: 97px;
-          padding: 6px 10px;
-        }
-        @media (max-width: 991px) {
-          .div-18 {
-            margin-top: 40px;
-            white-space: initial;
-            padding: 0 20px;
-          }
+          width: 25px;
         }
       `}</style>
     </>
   );
 }
+
 export default ClienteEditScreen;
-
-
+ 
