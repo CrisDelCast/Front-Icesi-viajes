@@ -73,7 +73,7 @@ function PlanesScreen() {
         </div>
         <div className="plan-list">
           {planes.map((plan) => (
-            <Link key={plan.id} to={`/plan/${plan.id}`}>
+            <Link key={plan.idPlan} to={`/plan/${plan.idPlan}`}>
               <button className="plan-button">{plan.nombre}</button>
             </Link>
           ))}

@@ -15,7 +15,7 @@ function PlanesHome() {
   const [destinosDisponibles, setDestinosDisponibles] = useState([]); 
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-  
+
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     setPlanData((prevState) => {
@@ -40,8 +40,9 @@ function PlanesHome() {
       [name]: value,
     }));
   };
+
   useEffect(() => {
-    // Aquí realizas la petición al servidor para obtener los destinos disponibles
+    // Petición al servidor para obtener los destinos disponibles
     const fetchDestinosDisponibles = async () => {
       try {
         const response = await axios.get('http://localhost:5433/api/destinos/disponibles');
@@ -54,17 +55,6 @@ function PlanesHome() {
     fetchDestinosDisponibles(); // Llamada a la función para obtener los destinos disponibles al cargar el componente
   }, []); // El segundo argumento [] indica que el efecto se ejecutará solo una vez al montar el componente
 
-  const handleSelectChange = (e) => {
-    const { name, options } = e.target;
-    const selectedDestinos = Array.from(options)
-      .filter((option) => option.selected)
-      .map((option) => option.value);
-    setPlanData((prevState) => ({
-      ...prevState,
-      [name]: selectedDestinos,
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -73,14 +63,14 @@ function PlanesHome() {
       const nuevoPlan = response.data;
       console.log('Nuevo plan creado:', nuevoPlan);
 
+      // Navegar a otra página después de crear el plan, si es necesario
+      // navigate('/ruta-a-donde-navegar');
+
     } catch (error) {
       console.error('Error al crear el plan:', error);
       setMessage('Error al crear el plan');
     }
   };
- 
-
-  
 
   return (
     <>
@@ -143,19 +133,22 @@ function PlanesHome() {
               />
             </div>
             <div className="form-group">
-              <label>Destinos:</label>
-              {destinosDisponibles.map((destino) => (
-                <div key={destino.id}>
-                  <input
-                    type="checkbox"
-                    value={destino.id}
-                    checked={planData.idDestinos.includes(destino.id)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label>{destino.nombre}</label>
-                </div>
-              ))}
-            </div>
+          <label>Destinos:</label>
+          {destinosDisponibles.map((destino) => {
+            console.log(`Renderizando destino: ${destino.idDest}, ${destino.nombre}`); // Verifica cada destino antes de renderizar
+            return (
+              <div key={destino.idDest}>
+                <input
+                  type="checkbox"
+                  value={destino.idDest}
+                  checked={planData.idDestinos.includes(destino.idDest)}
+                  onChange={handleCheckboxChange}
+                />
+                <label>{destino.nombre}</label>
+              </div>
+            );
+          })}
+        </div>
             <button type="submit">Crear Plan</button>
           </form>
           {message && <div className="error-message">{message}</div>}
