@@ -1,11 +1,31 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar'; 
+import App from "../Components/getDestinos";
 
 function DestinoHome() {
+  
   return (
     <>
+      
       <div className="div">
+        <NavBar />
+        <div class="div-4">
+          <div class="div-5">
+            <h1 className="div-8">Destinos</h1>
+            <input type="text" placeholder="Buscar destinos..."/>
+            
+            <span>Filtrar: </span><Link to="/DestinoFilter"><div className="button-style">f</div></Link>
+            <span>Agregar: </span><Link to="/DestinoAdd"><div className="button-style">+</div></Link>
+          </div>  
+          <div class="div-5">
+            <App/>
+          </div>
+        </div>
+      </div>
+    
+
+      {/* <div className="div">
       <NavBar />
         <div className="div-4">
           <div className="div-5">
@@ -83,8 +103,23 @@ function DestinoHome() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <style jsx>{`
+        .button-style {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          margin: 20px;
+          display:flex;
+        }
+
+
+
         .div {
           background-color: var(--sgivWhite-100, #fdfdfd);
           display: flex;
