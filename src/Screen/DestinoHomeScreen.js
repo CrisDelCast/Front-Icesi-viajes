@@ -1,55 +1,12 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
+import NavBar from '../Components/NavBar'; 
 
 function DestinoHome() {
   return (
     <>
       <div className="div">
-        <div className="div-2">
-        <Link to="/home"><div className="div-3">
-            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
-              A
-            </span>
-            <span style={{ fontFamily: "Redressed, sans-serif", fontWeight: 400, color: "rgba(253,253,253,1)" }}>
-              t
-            </span>
-          </div></Link>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e281c1b67a149e4da4884a9c14920c19f8a65bac747ed68fc00216c3d3cd4908?"
-            className="img"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2ce713b69d39ccd72fc8d00311fd0ecb34d4cfba5f8a8de7cd90c346a17cc2d?"
-            className="img-2"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d19a46c5f17720bd2556764803b6a0a6d2c5898fcf08c91c6917223ae8fe57d?"
-            className="img-3"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/cf4c986309820fce8f19e55e7c1ac558c93e44a01af00a78f4af9aa3e216c5aa?"
-            className="img-4"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/59337eadaa12d8be4784fbcb33da7286c99d404104500a9cef8223bf41708342?"
-            className="img-5"
-          />
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="img-6"
-          />
-          <img
-            loading="lazy"
-            srcSet="/USER.png"
-            className="img-7"
-          />
-        </div>
+      <NavBar />
         <div className="div-4">
           <div className="div-5">
             <div className="div-6">
