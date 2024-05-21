@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from '../Components/NavBar'; 
 
 function ClientesScreen() {
   const [clientes, setClientes] = useState([]);
@@ -34,46 +35,7 @@ function ClientesScreen() {
   return (
     <>
       <div className="div">
-        <div className="div-2">
-          <Link to="/home"><div className="div-3">
-            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: "rgba(253,253,253,1)" }}>
-              A
-            </span>
-            <span style={{ fontFamily: "Redressed, sans-serif", fontWeight: 400, color: "rgba(253,253,253,1)" }}>
-              t
-            </span>
-          </div></Link>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b247f7b4893c631e3de103969e2913c0a36ebe731eaa074f71ee0c638ba2a4bf?"
-            className="img"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2079a85e87fe28ef3da96d440df0921f278f613b3d3ec472d40d0aec4042b5?"
-            className="img-2"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e1abd72088f4cccca48528fe56d5bff40fbc4093915d9b86a4b2e62cd7cd3c55?"
-            className="img-3"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a9e285f278ad0e522613b700338b6d9c2a5dd473b518cfcceb9127534efc9727?"
-            className="img-4"
-          />
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2443a2c0f42ded4de666d7ef9824c3654fa1e4c94742127e0e2be5b5e62b1a88?"
-            className="img-5"
-          />
-          <img
-            loading="lazy"
-            srcSet="..."
-            className="img-6"
-          />
-        </div>
+      <NavBar />
         <div className="div-4">
           <div className="div-5">
             <div className="div-6">
@@ -83,11 +45,7 @@ function ClientesScreen() {
                 </div>
                 <div className="column-2">
                   <div className="div-9">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?"
-                      className="img-7"
-                    />
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?" className="img-7" />
                     <div className="div-10">
                       <div className="div-11" />
                     </div>
@@ -100,48 +58,34 @@ function ClientesScreen() {
             </div>
           </div>
           <div className="div-14">
-            <div className="div-15">
-              <div className="div-16">Cliente</div>
-              {clientes.map(cliente => (
-                <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`} key={cliente.idClie}>
-                  <div className="div-17">{cliente.nombre}</div>
-                </Link>
-              ))}
-            </div>
-            <div className="div-20">
-              <div className="div-21">ID</div>
-              {clientes.map(cliente => (
-                <div key={cliente.idClie} className="div-22">{cliente.idClie}</div>
-              ))}
-            </div>
-            <div className="div-25">
-              <div className="div-26">Estado</div>
-              {clientes.map(cliente => (
-                <div key={cliente.idClie} className="div-27">{cliente.estado}</div>
-              ))}
-            </div>
-            <div className="div-30">
-              <div className="div-31">Fecha Vinc.</div>
-              {clientes.map(cliente => (
-                <div key={cliente.idClie} className="div-32">{cliente.fechaCreacion}</div>
-              ))}
+            <div className="table-wrapper">
+              <table className="clientes-table">
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th>Fecha Vinc.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clientes.map(cliente => (
+                    <tr key={cliente.idClie}>
+                      <td>
+                        <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`}>{cliente.nombre}</Link>
+                      </td>
+                      <td>{cliente.idClie}</td>
+                      <td>{cliente.estado}</td>
+                      <td>{cliente.fechaCreacion}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className="div-35">
-              <img
-                loading="lazy"
-                srcSet="..."
-                className="img-8"
-              />
-              <img
-                loading="lazy"
-                srcSet="..."
-                className="img-9"
-              />
-              <img
-                loading="lazy"
-                srcSet="..."
-                className="img-10"
-              />
+              <img loading="lazy" srcSet="..." className="img-8" />
+              <img loading="lazy" srcSet="..." className="img-9" />
+              <img loading="lazy" srcSet="..." className="img-10" />
             </div>
           </div>
         </div>
@@ -337,91 +281,38 @@ function ClientesScreen() {
         }
         .div-14 {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           justify-content: flex-start;
           margin-top: 19px;
           padding: 0 60px;
           gap: 12px;
         }
-        .div-15 {
-          align-items: flex-start;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          max-width: 100%;
+        @media (max-width: 991px) {
+          .div-14 {
+            padding: 0 20px;
+          }
         }
-        .div-16 {
+        .table-wrapper {
+          overflow-x: auto;
+        }
+        .clientes-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .clientes-table th, .clientes-table td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+        .clientes-table th {
+          background-color: #f2f2f2;
+          color: #333;
+        }
+        .clientes-table td {
           color: #686868;
           font-family: Poppins, sans-serif;
           font-size: 14px;
           font-weight: 500;
-        }
-        .div-17 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          margin-top: 9px;
-        }
-        .div-20 {
-          align-items: flex-start;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          max-width: 100%;
-        }
-        .div-21 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-        }
-        .div-22 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          margin-top: 9px;
-        }
-        .div-25 {
-          align-items: flex-start;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          max-width: 100%;
-        }
-        .div-26 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-        }
-        .div-27 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          margin-top: 9px;
-        }
-        .div-30 {
-          align-items: flex-start;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          max-width: 100%;
-        }
-        .div-31 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-        }
-        .div-32 {
-          color: #686868;
-          font-family: Poppins, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
-          margin-top: 9px;
         }
         .div-35 {
           display: flex;
