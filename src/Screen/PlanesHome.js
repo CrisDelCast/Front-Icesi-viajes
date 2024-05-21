@@ -23,25 +23,28 @@ function PlanesScreen() {
     <div className="container">
       <NavBar />
       <div className="content">
-        <div className="header">
-          <h1>Planes Disponibles</h1>
-          <Link to="/PlanesHome">
-            <button className="add-button">Agregar Plan</button>
-          </Link>
-        </div>
+      <div className="div-18">Planes disponibles</div>
+        <Link to="/PlanesHome">
+          <button className="add-button">Agregar Plan</button>
+        </Link>
         <div className="plan-list">
           {planes.map((plan) => (
             <Link key={plan.idPlan} to={`/plan/${plan.idPlan}`} className="plan-link">
-              <button className="plan-button">{plan.nombre}</button>
+              <button className="plan-button" style={{backgroundImage: `url(PAISAJE.png)`}}>{plan.nombre}</button>
             </Link>
           ))}
         </div>
       </div>
-
       <style jsx>{`
         .container {
           display: flex;
           height: 100vh;
+        }
+
+        .div-18 {
+          color: var(--sgivBlue-700, #03318c);
+          font: 500 128px Poppins, sans-serif;
+          padding-right: 600px; 
         }
 
         .content {
@@ -50,14 +53,6 @@ function PlanesScreen() {
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-
-        .header {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          align-items: center;
-          margin-bottom: 20px;
         }
 
         .add-button {
@@ -74,15 +69,14 @@ function PlanesScreen() {
         }
 
         .plan-list {
-          display: flex;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta los elementos en filas de 3 */
           gap: 10px; /* Espacio entre los botones */
-          flex-wrap: wrap; /* Permitir que los botones se envuelvan si no caben en una sola línea */
-          justify-content: center; /* Centrar los botones horizontalmente */
+          justify-items: center; /* Centrar los botones horizontalmente */
           width: 100%;
           max-width: 600px;
           align-items: center;
         }
-        
 
         .plan-link {
           text-decoration: none;
@@ -97,6 +91,9 @@ function PlanesScreen() {
           cursor: pointer;
           width: 100%;
           text-align: left;
+          background-size: cover; /* Asegura que la imagen de fondo cubra todo el botón */
+          height: 200px; /* Ajusta la altura del botón al tamaño de la imagen */
+          border-radius: 30px;
         }
 
         .plan-button:hover {

@@ -229,11 +229,8 @@ function ClientesScreen() {
           }
         }
         .div-8 {
-          color: var(--dl-color-gray-01, #333);
-          font-family: Poppins, sans-serif;
-          font-size: 18px;
-          font-weight: 700;
-          line-height: 1.25;
+          color: var(--sgivBlue-700, #03318c);
+          font: 500 128px Poppins, sans-serif;
         }
         .column-2 {
           display: flex;
