@@ -56,6 +56,7 @@ function ClientesScreen() {
               <table className="clientes-table">
                 <thead>
                   <tr>
+                    <th>Foto de perfil</th>
                     <th>Cliente</th>
                     <th>ID</th>
                     <th>Estado</th>
@@ -65,12 +66,19 @@ function ClientesScreen() {
                 <tbody>
                   {clientes.map(cliente => (
                     <tr key={cliente.idClie}>
+                  <td className="foto-perfil">
+                    <img
+                      src={cliente.foto_perfil_url}
+                      alt={`${cliente.nombre} Photo`}
+                    />
+                  </td>
                       <td>
                         <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`}>{cliente.nombre}</Link>
                       </td>
                       <td>{cliente.idClie}</td>
                       <td>{cliente.estado}</td>
                       <td>{cliente.fechaCreacion}</td>
+                      
                     </tr>
                   ))}
                 </tbody>
@@ -86,6 +94,22 @@ function ClientesScreen() {
       </div>
       <style jsx>{`
 
+          .foto-perfil {
+            width: 50px; /* Adjust width as needed */
+            height: 50px; /* Adjust height as needed */
+            border-radius: 50%; /* Make the cell circular */
+            overflow: hidden; /* Hide overflowing parts of the image */
+            display: flex; /* Center the image horizontally and vertically */
+            justify-content: center;
+            align-items: center;
+            
+          }
+
+          .foto-perfil img {
+            width: 200%; /* Ensure image fills the entire cell */
+            height: 150%; /* Ensure image fills the entire cell */
+            object-fit: cover; /* Resize image to fill the cell while maintaining aspect ratio */
+          }
 
         .button-style {
           font-family: Poppins, sans-serif;

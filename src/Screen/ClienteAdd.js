@@ -13,8 +13,9 @@ function ClienteAdd() {
     telefono2: '',
     correo: '',
     sexo: '',
-    fechaNacimiento: '',
+    fechaNacimiento:'' ,
     idTiid: '',
+    foto: null, // Nuevo campo para la foto
   });
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -27,19 +28,46 @@ function ClienteAdd() {
     }));
   };
 
+  const handleDateChange = (event) => {
+    setUserData({ ...userData, fechaNacimiento: new Date(event.target.value) });
+}
+
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setUserData((prevState) => ({
+      ...prevState,
+      foto: file,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5433/api/cliente/crearClientes', userData);
+      const formData = new FormData();
+      Object.keys(userData).forEach((key) => {
+        formData.append(key, userData[key]);
+      });
+      // Agregar el archivo de imagen al FormData
+      formData.append('foto', userData.foto);
+
+      const response = await axios.post(
+        'http://localhost:5433/api/cliente/crearClienteConFoto',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Establecer el tipo de contenido como multipart/form-data
+          },
+        }
+      );
       setMessage('Cliente creado exitosamente');
-      // Redirigir a otra página o realizar otra acción después de crear el cliente
       navigate('/ClienteScreen');
     } catch (error) {
-      console.log(userData)
       console.error('Error al crear cliente:', error);
       setMessage('Error al crear cliente');
     }
   };
+
 
   return (
     <>
@@ -138,7 +166,7 @@ function ClienteAdd() {
                   type="date"
                   name="fechaNacimiento"
                   value={userData.fechaNacimiento}
-                  onChange={handleChange}
+                  onChange={handleDateChange}
                   className="form-input"
                 />
               </div>
@@ -155,6 +183,16 @@ function ClienteAdd() {
                   <option value="2">Cédula de Extranjería</option>
                   <option value="3">Pasaporte</option>
                 </select>
+              </div>
+                            <div className="form-group">
+                <label className="form-label">Foto</label>
+                <input
+                  type="file"
+                  name="foto"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="form-input"
+                />
               </div>
               <button type="submit" className="form-button">Crear Cliente</button>
             </form>

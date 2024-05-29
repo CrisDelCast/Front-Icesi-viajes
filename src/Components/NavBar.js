@@ -6,10 +6,8 @@ function NavBar() {
     <>
       <div className="nav-container">
         <div className="nav-header">
-          <Link to="/Home" className="nav-title">
             <span className="nav-title-bold">A</span>
             <span className="nav-title-light">t</span>
-          </Link>
         </div>
         <img
           loading="lazy"
