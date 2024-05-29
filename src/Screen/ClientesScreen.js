@@ -44,15 +44,9 @@ function ClientesScreen() {
                   <div className="div-8">Clientes</div>
                 </div>
                 <div className="column-2">
-                  <div className="div-9">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?" className="img-7" />
-                    <div className="div-10">
-                      <div className="div-11" />
-                    </div>
-                    <div className="div-12">
-                      <div className="div-13" />
-                    </div>
-                  </div>
+                <input type="text" placeholder="Buscar Usuarios..."/>
+                <span>Filtrar: </span><Link to="/DestinoFilter"><div className="button-style">f</div></Link>
+                <span>Agregar: </span><Link to="/ClienteAdd"><div className="button-style">+</div></Link>
                 </div>
               </div>
             </div>
@@ -91,6 +85,21 @@ function ClientesScreen() {
         </div>
       </div>
       <style jsx>{`
+
+
+        .button-style {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          margin: 20px;
+          display:flex;
+        }
+        
         .div {
           background-color: var(--sgivWhite-100, #fdfdfd);
           display: flex;

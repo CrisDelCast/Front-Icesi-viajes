@@ -10,6 +10,7 @@ import ClientesScreen from './Screen/ClientesScreen';
 import ClienteEditScreen from './Screen/ClienteEditScreen';
 import AgenteHome from './Screen/AgenteHome';
 import ViewerHome from './Screen/ViewerHome';
+import ClienteAdd from './Screen/ClienteAdd';
 
 function App() {
   return (  
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} /> 
         <Route path="/AgenteHome" element={<PrivateRoute><AgenteHome /></PrivateRoute>} />
         <Route path="/ViewerHome" element={<PrivateRoute><ViewerHome /></PrivateRoute>} />
+        <Route path="/ClienteAdd" element={<PrivateRoute><ClienteAdd /></PrivateRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
