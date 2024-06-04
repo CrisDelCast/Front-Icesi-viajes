@@ -24,8 +24,8 @@ function App() {
         <Route path="/DestinoAdd" element={<PrivateRoute><DestinoAdd /></PrivateRoute>} /> 
         <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
         <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} />
-        <Route path="/ServiciosHome" element={<PrivateRoute><PlanesHome /></PrivateRoute>} />
-        <Route path="/ServiciosScreen" element={<PrivateRoute><PlanesScreen /></PrivateRoute>} /> 
+        <Route path="/ServiciosHome" element={<PrivateRoute><ServiciosHome /></PrivateRoute>} />
+        <Route path="/ServiciosScreen" element={<PrivateRoute><ServiciosScreen /></PrivateRoute>} /> 
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
