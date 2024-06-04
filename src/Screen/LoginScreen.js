@@ -26,12 +26,11 @@ function Login() {
       const usuario = response.data;
       console.log('Usuario autenticado:', usuario);
 
-      // Almacenar el token de autenticación y el rol en el localStorage
+      // Almacenar el token de autenticación en el localStorage
       localStorage.setItem('token', usuario.token);
-      localStorage.setItem('rol', usuario.rol);
 
-      // Redirigir al usuario a la página de inicio correspondiente a su rol
-      navigate(getHomePageForRole(usuario.rol));
+      // Redirigir al usuario a la pantalla de inicio
+      navigate('/home');
     } catch (error) {
       console.error('Error de inicio de sesión:', error);
       if (error.response && error.response.status === 401) {
@@ -41,17 +40,7 @@ function Login() {
       }
     }
   };
-
-  const getHomePageForRole = (rol) => {
-    switch (rol) {
-      case 'Administrador':
-        return '/home';
-      case 'Viewer':
-        return '/ViewerHome';
-      case 'Agente':
-          return '/AgenteHome';
-    }
-  };
+  
 
   return (
     <>
@@ -80,11 +69,10 @@ function Login() {
               <div className="div-6"></div>
               <button type="submit" className="div-10">Ingresar</button>
             </form>
-            {message && <div className="error-message">{message}</div>}
             <div className="div-11">
               <div className="div-12">
                 <div className="div-13" />
-                <div className="div-14">Recordar contraseña</div> 
+                <div className="div-14">Recordar contraseña</div>
               </div>
               <div className="div-15">¿Olvidaste tu contraseña?</div>
             </div>
@@ -99,9 +87,6 @@ function Login() {
         </div>
       </div>
       <style jsx>{`
-
-
-
         .div {
           justify-content: space-between;
           align-items: center;
@@ -256,12 +241,7 @@ function Login() {
           .img {
             max-width: 100%;
           }
-        }  
-          .error-message {
-          color: red;
-          margin-top: 10px;
         }
-
       `}</style>
     </>
   );

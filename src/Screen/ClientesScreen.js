@@ -44,9 +44,15 @@ function ClientesScreen() {
                   <div className="div-8">Clientes</div>
                 </div>
                 <div className="column-2">
-                <input type="text" placeholder="Buscar Usuarios..."/>
-                <span>Filtrar: </span><Link to="/DestinoFilter"><div className="button-style">f</div></Link>
-                <span>Agregar: </span><Link to="/ClienteAdd"><div className="button-style">+</div></Link>
+                  <div className="div-9">
+                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?" className="img-7" />
+                    <div className="div-10">
+                      <div className="div-11" />
+                    </div>
+                    <div className="div-12">
+                      <div className="div-13" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -56,7 +62,6 @@ function ClientesScreen() {
               <table className="clientes-table">
                 <thead>
                   <tr>
-                    <th>Foto de perfil</th>
                     <th>Cliente</th>
                     <th>ID</th>
                     <th>Estado</th>
@@ -66,19 +71,12 @@ function ClientesScreen() {
                 <tbody>
                   {clientes.map(cliente => (
                     <tr key={cliente.idClie}>
-                  <td className="foto-perfil">
-                    <img
-                      src={cliente.foto_perfil_url}
-                      alt={`${cliente.nombre} Photo`}
-                    />
-                  </td>
                       <td>
                         <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`}>{cliente.nombre}</Link>
                       </td>
                       <td>{cliente.idClie}</td>
                       <td>{cliente.estado}</td>
                       <td>{cliente.fechaCreacion}</td>
-                      
                     </tr>
                   ))}
                 </tbody>
@@ -93,37 +91,6 @@ function ClientesScreen() {
         </div>
       </div>
       <style jsx>{`
-
-          .foto-perfil {
-            width: 50px; /* Adjust width as needed */
-            height: 50px; /* Adjust height as needed */
-            border-radius: 50%; /* Make the cell circular */
-            overflow: hidden; /* Hide overflowing parts of the image */
-            display: flex; /* Center the image horizontally and vertically */
-            justify-content: center;
-            align-items: center;
-            
-          }
-
-          .foto-perfil img {
-            width: 200%; /* Ensure image fills the entire cell */
-            height: 150%; /* Ensure image fills the entire cell */
-            object-fit: cover; /* Resize image to fill the cell while maintaining aspect ratio */
-          }
-
-        .button-style {
-          font-family: Poppins, sans-serif;
-          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
-          background-color: var(--sgivWhite-100, #fdfdfd);
-          border-radius: 50%;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          margin: 20px;
-          display:flex;
-        }
-        
         .div {
           background-color: var(--sgivWhite-100, #fdfdfd);
           display: flex;

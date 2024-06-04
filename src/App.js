@@ -10,9 +10,6 @@ import ClientesScreen from './Screen/ClientesScreen';
 import ClienteEditScreen from './Screen/ClienteEditScreen';
 import ServiciosHome from './Screen/ServiciosScreen';
 import ServiciosScreen from './Screen/ServiciosHome';
-import AgenteHome from './Screen/AgenteHome';
-import ViewerHome from './Screen/ViewerHome';
-import ClienteAdd from './Screen/ClienteAdd';
 
 function App() {
   return (  
@@ -30,10 +27,6 @@ function App() {
         <Route path="/ServiciosHome" element={<PrivateRoute><PlanesHome /></PrivateRoute>} />
         <Route path="/ServiciosScreen" element={<PrivateRoute><PlanesScreen /></PrivateRoute>} /> 
 
-        
-        <Route path="/AgenteHome" element={<PrivateRoute><AgenteHome /></PrivateRoute>} />
-        <Route path="/ViewerHome" element={<PrivateRoute><ViewerHome /></PrivateRoute>} />
-        <Route path="/ClienteAdd" element={<PrivateRoute><ClienteAdd /></PrivateRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

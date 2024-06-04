@@ -3,13 +3,6 @@ import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar';  // Asegúrate de que la ruta sea correcta
 
 function Home() {
-
-        // Obtener el rol del usuario del localStorage
-        const rol = localStorage.getItem('rol');
-
-        // Verificar si el usuario tiene el rol de "Agente"
-        const isAgente = rol === 'Administrador';
-
   return (
     <>
       <div className="home-container">
