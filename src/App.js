@@ -8,6 +8,8 @@ import DestinoHome from './Screen/DestinoHomeScreen';
 import DestinoAdd from './Screen/DestinoAdd';
 import ClientesScreen from './Screen/ClientesScreen'; 
 import ClienteEditScreen from './Screen/ClienteEditScreen';
+import ServiciosHome from './Screen/ServiciosScreen';
+import ServiciosScreen from './Screen/ServiciosHome';
 
 function App() {
   return (  
@@ -21,7 +23,10 @@ function App() {
         <Route path="/DestinoHome" element={<PrivateRoute><DestinoHome /></PrivateRoute>} /> 
         <Route path="/DestinoAdd" element={<PrivateRoute><DestinoAdd /></PrivateRoute>} /> 
         <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
-        <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} /> 
+        <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} />
+        <Route path="/ServiciosHome" element={<PrivateRoute><PlanesHome /></PrivateRoute>} />
+        <Route path="/ServiciosScreen" element={<PrivateRoute><PlanesScreen /></PrivateRoute>} /> 
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

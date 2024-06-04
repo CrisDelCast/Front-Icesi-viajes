@@ -27,30 +27,40 @@ function Home() {
             <div className="div-11">
               <div className="div-12">
                 <div className="column-5">
-                <Link to="/DestinoHome">
-                  <img
-                    loading="lazy"
-                    src="/DESTINOS.png"
-                    className="img-10"
-                  />
+                  <Link to="/DestinoHome">
+                    <img
+                      loading="lazy"
+                      src="/DESTINOS.png"
+                      className="img-10"
+                    />
                   </Link>
                 </div>
                 <div className="column-6">
-                <Link to ="/PlanesScreen">
-                  <img
-                    loading="lazy"
-                    src="/PLANES.png"
-                    className="img-11"
-                  />
+                  <Link to="/PlanesScreen">
+                    <img
+                      loading="lazy"
+                      src="/PLANES.png"
+                      className="img-11"
+                    />
                   </Link>
                 </div>
                 <div className="column-7">
-                <Link to="/ClientesScreen">
-                  <img
-                    loading="lazy"
-                    srcSet="/CLIENTES.png"
-                    className="img-12"
-                  />
+                  <Link to="/ClientesScreen">
+                    <img
+                      loading="lazy"
+                      srcSet="/CLIENTES.png"
+                      className="img-12"
+                    />
+                  </Link>
+                </div>
+                {/* Nueva columna para Servicios */}
+                <div className="column-8">
+                  <Link to="/ServiciosScreen">
+                    <img
+                      loading="lazy"
+                      src="/SERVICIOS.png"
+                      className="img-13"
+                    />
                   </Link>
                 </div>
               </div>
@@ -264,8 +274,9 @@ function Home() {
           aspect-ratio: 0.88;
           object-fit: auto;
           object-position: center;
-          width: 100%;
+          width: 95%;
           flex-grow: 1;
+          margin-left: 20px;
         }
         @media (max-width: 991px) {
           .img-10 {
@@ -288,8 +299,9 @@ function Home() {
           aspect-ratio: 0.88;
           object-fit: auto;
           object-position: center;
-          width: 100%;
+          width: 95%;
           flex-grow: 1;
+          margin-left: 10px;
         }
         @media (max-width: 991px) {
           .img-11 {
@@ -312,11 +324,38 @@ function Home() {
           aspect-ratio: 0.88;
           object-fit: auto;
           object-position: center;
-          width: 100%;
+          width: 95%;
           flex-grow: 1;
+          margin-left: 10px;
         }
         @media (max-width: 991px) {
           .img-12 {
+            margin-top: 40px;
+          }
+        }
+        .column-8 { /* Nueva clase para la columna de servicios */
+          display: flex;
+          flex-direction: column;
+          line-height: normal;
+          width: 33%;
+          margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+          .column-8 {
+            width: 100%;
+          }
+        }
+        .img-13 { /* Nueva clase para la imagen de servicios */
+          aspect-ratio: 0.88;
+          object-fit: auto;
+          object-position: center;
+          width: 95%;
+          flex-grow: 1;
+          margin-left: 10px;
+          
+        }
+        @media (max-width: 991px) {
+          .img-13 {
             margin-top: 40px;
           }
         }
