@@ -70,6 +70,7 @@ function ClientesScreen() {
               <table className="clientes-table">
                 <thead>
                   <tr>
+                    <th>Foto de perfil</th>
                     <th>Cliente</th>
                     <th>ID</th>
                     <th>Estado</th>
