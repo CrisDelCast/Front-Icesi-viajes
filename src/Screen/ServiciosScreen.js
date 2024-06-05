@@ -5,34 +5,15 @@ import NavBar from '../Components/NavBar';
 
 function ServiciosHome() {
   const [serviceData, setServiceData] = useState({
-    codigo: '',
+    idServicio: '',
     nombre: '',
+    idTipoServicio: '',
     descripcion: '',
-    fechaInicio: '',
-    fechaFin: '',
     precio: 0,
-    idCategorias: [],
   });
-  const [categoriasDisponibles, setCategoriasDisponibles] = useState([]);
+  const [tiposServicioDisponibles, setTiposServicioDisponibles] = useState([]);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
-
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    setServiceData((prevState) => {
-      if (checked) {
-        return {
-          ...prevState,
-          idCategorias: [...prevState.idCategorias, parseInt(value)],
-        };
-      } else {
-        return {
-          ...prevState,
-          idCategorias: prevState.idCategorias.filter((id) => id !== parseInt(value)),
-        };
-      }
-    });
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,17 +24,17 @@ function ServiciosHome() {
   };
 
   useEffect(() => {
-    // Petición al servidor para obtener las categorías disponibles
-    const fetchCategoriasDisponibles = async () => {
+    // Petición al servidor para obtener los tipos de servicio disponibles
+    const fetchTiposServicioDisponibles = async () => {
       try {
-        const response = await axios.get('http://localhost:5433/api/categorias/disponibles');
-        setCategoriasDisponibles(response.data); // Asignas las categorías obtenidas al estado
+        const response = await axios.get('http://localhost:5433/api/tiposservicio/disponibles');
+        setTiposServicioDisponibles(response.data); // Asignas los tipos de servicio obtenidos al estado
       } catch (error) {
-        console.error('Error al obtener las categorías disponibles:', error);
+        console.error('Error al obtener los tipos de servicio disponibles:', error);
       }
     };
 
-    fetchCategoriasDisponibles(); // Llamada a la función para obtener las categorías disponibles al cargar el componente
+    fetchTiposServicioDisponibles(); // Llamada a la función para obtener los tipos de servicio disponibles al cargar el componente
   }, []); // El segundo argumento [] indica que el efecto se ejecutará solo una vez al montar el componente
 
   const handleSubmit = async (e) => {
@@ -75,16 +56,17 @@ function ServiciosHome() {
 
   return (
     <>
+      <NavBar />
       <div className="container">
         <div className="form-container">
           <h2>Crear Nuevo Servicio</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Código:</label>
+              <label>ID Servicio:</label>
               <input
                 type="text"
-                name="codigo"
-                value={serviceData.codigo}
+                name="idServicio"
+                value={serviceData.idServicio}
                 onChange={handleChange}
               />
             </div>
@@ -98,28 +80,25 @@ function ServiciosHome() {
               />
             </div>
             <div className="form-group">
+              <label>Tipo de Servicio:</label>
+              <select
+                name="idTipoServicio"
+                value={serviceData.idTipoServicio}
+                onChange={handleChange}
+              >
+                <option value="">Selecciona un tipo de servicio</option>
+                {tiposServicioDisponibles.map((tipo) => (
+                  <option key={tipo.id} value={tipo.id}>
+                    {tipo.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
               <label>Descripción:</label>
               <textarea
                 name="descripcion"
                 value={serviceData.descripcion}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Fecha de Inicio:</label>
-              <input
-                type="date"
-                name="fechaInicio"
-                value={serviceData.fechaInicio}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Fecha de Fin:</label>
-              <input
-                type="date"
-                name="fechaFin"
-                value={serviceData.fechaFin}
                 onChange={handleChange}
               />
             </div>
@@ -131,23 +110,6 @@ function ServiciosHome() {
                 value={serviceData.precio}
                 onChange={handleChange}
               />
-            </div>
-            <div className="form-group">
-              <label>Categorías:</label>
-              {categoriasDisponibles.map((categoria) => {
-                console.log(`Renderizando categoría: ${categoria.idCat}, ${categoria.nombre}`);
-                return (
-                  <div key={categoria.idCat}>
-                    <input
-                      type="checkbox"
-                      value={categoria.idCat}
-                      checked={serviceData.idCategorias.includes(categoria.idCat)}
-                      onChange={handleCheckboxChange}
-                    />
-                    <label>{categoria.nombre}</label>
-                  </div>
-                );
-              })}
             </div>
             <button type="submit">Crear Servicio</button>
           </form>
@@ -173,7 +135,7 @@ function ServiciosHome() {
         label {
           font-weight: bold;
         }
-        input, textarea {
+        input, textarea, select {
           width: 100%;
           padding: 8px;
           border: 1px solid #ccc;
