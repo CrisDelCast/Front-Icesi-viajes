@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+
 function NavBar() {
   return (
     <>
@@ -46,7 +47,7 @@ function NavBar() {
         />
         <img
           loading="lazy"
-          srcSet="..."
+          src="..."
           className="nav-icon nav-icon-bottom"
         />
       </div>
