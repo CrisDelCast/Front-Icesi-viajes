@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import NavBar from '../Components/NavBar'; 
+import NavBar from '../Components/NavBar';
+
 
 function ClientesScreen() {
   const [clientes, setClientes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -24,6 +26,11 @@ function ClientesScreen() {
     fetchClientes();
   }, []);
 
+  // Filtrar clientes basado en el término de búsqueda
+  const filteredClientes = clientes.filter(cliente =>
+    cliente.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) {
     return <div>Cargando...</div>;
   }
@@ -35,7 +42,7 @@ function ClientesScreen() {
   return (
     <>
       <div className="div">
-      <NavBar />
+        <NavBar />
         <div className="div-4">
           <div className="div-5">
             <div className="div-6">
@@ -44,15 +51,16 @@ function ClientesScreen() {
                   <div className="div-8">Clientes</div>
                 </div>
                 <div className="column-2">
-                  <div className="div-9">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a607cc4fa293c01ed5dd163e88b075a599374234daa1888a4c0a14151b422747?" className="img-7" />
-                    <div className="div-10">
-                      <div className="div-11" />
-                    </div>
-                    <div className="div-12">
-                      <div className="div-13" />
-                    </div>
-                  </div>
+                  <input
+                    type="text"
+                    placeholder="Buscar Usuarios..."
+                    value={searchTerm} // Vincula el estado del término de búsqueda
+                    onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda
+                  />
+                  <span>Filtrar: </span>
+                  <Link to="/DestinoFilter"><div className="button-style">f</div></Link>
+                  <span>Agregar: </span>
+                  <Link to="/ClienteAdd"><div className="button-style">+</div></Link>
                 </div>
               </div>
             </div>
@@ -69,8 +77,14 @@ function ClientesScreen() {
                   </tr>
                 </thead>
                 <tbody>
-                  {clientes.map(cliente => (
+                  {filteredClientes.map(cliente => (
                     <tr key={cliente.idClie}>
+                      <td className="foto-perfil">
+                        <img
+                          src={cliente.foto_perfil_url}
+                          alt={`${cliente.nombre} Photo`}
+                        />
+                      </td>
                       <td>
                         <Link to={`/ClienteEditScreen/?id=${cliente.idClie}`}>{cliente.nombre}</Link>
                       </td>
@@ -91,6 +105,32 @@ function ClientesScreen() {
         </div>
       </div>
       <style jsx>{`
+        .foto-perfil {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .foto-perfil img {
+          width: 200%;
+          height: 150%;
+          object-fit: cover;
+        }
+        .button-style {
+          font-family: Poppins, sans-serif;
+          filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+          background-color: var(--sgivWhite-100, #fdfdfd);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          margin: 20px;
+          display: flex;
+        }
         .div {
           background-color: var(--sgivWhite-100, #fdfdfd);
           display: flex;
