@@ -44,10 +44,8 @@ function ServiciosHome() {
       const response = await axios.post('http://localhost:5433/api/servicios/crear', serviceData);
       const nuevoServicio = response.data;
       console.log('Nuevo servicio creado:', nuevoServicio);
-
-      // Navegar a otra página después de crear el servicio, si es necesario
-      // navigate('/ruta-a-donde-navegar');
-
+      setMessage('Servicio creado con éxito');
+      navigate('/Servicios'); // Navegar a la lista de servicios después de crear el servicio
     } catch (error) {
       console.error('Error al crear el servicio:', error);
       setMessage('Error al crear el servicio');

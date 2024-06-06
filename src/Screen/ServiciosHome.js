@@ -21,8 +21,8 @@ function ServiciosScreen() {
 
   return (
     <div className="container">
-      <NavBar />
       <div className="content">
+        <NavBar />
         <div className="div-18">Servicios disponibles</div>
         <Link to="/ServiciosHome">
           <button className="add-button">Agregar Servicio</button>
@@ -30,14 +30,14 @@ function ServiciosScreen() {
         <div className="servicio-list">
           {servicios.map((servicio) => (
             <Link key={servicio.idServicio} to={`/servicio/${servicio.idServicio}`} className="servicio-link">
-              <button className="servicio-button" style={{backgroundImage: `url(SERVICIO.png)`}}>{servicio.nombre}</button>
+              <button className="servicio-button" style={{ backgroundImage: `url(SERVICIO.png)` }}>{servicio.nombre}</button>
             </Link>
           ))}
         </div>
       </div>
       <style jsx>{`
         .container {
-          display: flex;
+          display: fit;
           height: 100vh;
         }
 
