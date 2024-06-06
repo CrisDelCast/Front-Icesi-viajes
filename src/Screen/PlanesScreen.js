@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import NavBar from '../Components/NavBar'; 
 
@@ -12,6 +12,7 @@ function PlanesHome() {
     fechaFinViaje: '',
     valorTotal: 0,
     idDestinos: [],
+    idServicio: []
   });
   const [destinosDisponibles, setDestinosDisponibles] = useState([]); 
   const [message, setMessage] = useState('');
@@ -24,11 +25,13 @@ function PlanesHome() {
         return {
           ...prevState,
           idDestinos: [...prevState.idDestinos, parseInt(value)],
+          idServicio: [...prevState.idServicio, parseInt(value)],
         };
       } else {
         return {
           ...prevState,
           idDestinos: prevState.idDestinos.filter((id) => id !== parseInt(value)),
+          idServicio: prevState.idServicio.filter((id) => id !== parseInt(value)),
         };
       }
     });
@@ -72,7 +75,23 @@ function PlanesHome() {
       setMessage('Error al crear el plan');
     }
   };
+  const [servicios, setServicios] = useState([]);
 
+  useEffect(() => {
+    const fetchServicios = async () => {
+      try {
+        const response = await axios.get('http://localhost:5433/api/servicios/extraer');
+        setServicios(response.data); // Suponiendo que la respuesta contiene la lista de servicios
+      } catch (error) {
+        console.error('Error al obtener los servicios:', error);
+      }
+    };
+
+    fetchServicios();
+  }, []);
+
+
+  
   return (
     <>
       <div className="container">
@@ -150,6 +169,24 @@ function PlanesHome() {
             );
           })}
         </div>
+        <div className="form-group">
+          <label>Servicios:</label>
+          {servicios.map((servicio) => {
+            console.log(`Renderizando servicio: ${servicio.id}, ${servicio.nombre}`); // Verifica cada destino antes de renderizar
+            return (
+              <div key={servicio.id}>
+                <input
+                  type="checkbox"
+                  value={servicio.id}
+                  checked={planData.idServicio.includes(servicio.id)}
+                  onChange={handleCheckboxChange}
+                />
+                <label>{servicio.nombre}</label>
+              </div>
+            );
+          })}
+        </div>
+
             <button type="submit">Crear Plan</button>
           </form>
           {message && <div className="error-message">{message}</div>}

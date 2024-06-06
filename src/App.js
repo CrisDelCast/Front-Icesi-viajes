@@ -10,6 +10,11 @@ import ClientesScreen from './Screen/ClientesScreen';
 import ClienteEditScreen from './Screen/ClienteEditScreen';
 import ServiciosHome from './Screen/ServiciosScreen';
 import ServiciosScreen from './Screen/ServiciosHome';
+import AgenteHome from './Screen/AgenteHome';
+import ViewerHome from './Screen/ViewerHome';
+import ClienteAdd from './Screen/ClienteAdd';
+import DestinoDetalle from './Screen/DestinoDetalle';
+import ReservasScreen from './Screen/ReservasScreen';
 
 function App() {
   return (  
@@ -23,10 +28,14 @@ function App() {
         <Route path="/DestinoHome" element={<PrivateRoute><DestinoHome /></PrivateRoute>} /> 
         <Route path="/DestinoAdd" element={<PrivateRoute><DestinoAdd /></PrivateRoute>} /> 
         <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
-        <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} />
         <Route path="/ServiciosHome" element={<PrivateRoute><ServiciosHome /></PrivateRoute>} />
         <Route path="/ServiciosScreen" element={<PrivateRoute><ServiciosScreen /></PrivateRoute>} /> 
-
+        <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} /> 
+        <Route path="/AgenteHome" element={<PrivateRoute><AgenteHome /></PrivateRoute>} />
+        <Route path="/ViewerHome" element={<PrivateRoute><ViewerHome /></PrivateRoute>} />
+        <Route path="/ClienteAdd" element={<PrivateRoute><ClienteAdd /></PrivateRoute>} />
+        <Route path="/destino/:id" component={DestinoDetalle} />
+        <Route path="/ReservasScreen" element={<PrivateRoute><ReservasScreen /></PrivateRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

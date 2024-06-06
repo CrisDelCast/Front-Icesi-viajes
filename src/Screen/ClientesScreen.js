@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../Components/NavBar';
 
-
 function ClientesScreen() {
   const [clientes, setClientes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,6 +30,17 @@ function ClientesScreen() {
     cliente.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Función para eliminar cliente
+  const eliminarCliente = async (idClie) => {
+    try {
+      await axios.delete(`http://localhost:5433/api/cliente/eliminar/${idClie}`);
+      setClientes(clientes.filter(cliente => cliente.idClie !== idClie));
+    } catch (error) {
+      console.error('Error al eliminar el cliente:', error);
+      setError('Error al eliminar el cliente');
+    }
+  };
+
   if (loading) {
     return <div>Cargando...</div>;
   }
@@ -57,8 +67,6 @@ function ClientesScreen() {
                     value={searchTerm} // Vincula el estado del término de búsqueda
                     onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda
                   />
-                  <span>Filtrar: </span>
-                  <Link to="/DestinoFilter"><div className="button-style">f</div></Link>
                   <span>Agregar: </span>
                   <Link to="/ClienteAdd"><div className="button-style">+</div></Link>
                 </div>
@@ -75,6 +83,7 @@ function ClientesScreen() {
                     <th>ID</th>
                     <th>Estado</th>
                     <th>Fecha Vinc.</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -92,6 +101,9 @@ function ClientesScreen() {
                       <td>{cliente.idClie}</td>
                       <td>{cliente.estado}</td>
                       <td>{cliente.fechaCreacion}</td>
+                      <td>
+                        <button onClick={() => eliminarCliente(cliente.idClie)}>Eliminar</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

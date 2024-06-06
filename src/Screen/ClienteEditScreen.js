@@ -34,10 +34,14 @@ function ClienteEditScreen() {
 
   return (
     <>
-      <div className="container">
-      <NavBar />
+ <div className="container">
+        <NavBar />
         <div className="content">
           <h1>{cliente.nombre}</h1>
+          {/* Contenedor para la imagen */}
+          <div className="image-container">
+            <img src={cliente.foto_perfil_url} alt={`${cliente.nombre} Photo`} className="cliente-image" />
+          </div>
           <table>
             <tbody>
               <tr>

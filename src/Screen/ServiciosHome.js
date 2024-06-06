@@ -21,8 +21,8 @@ function ServiciosScreen() {
 
   return (
     <div className="container">
+      <NavBar />
       <div className="content">
-        <NavBar />
         <div className="div-18">Servicios disponibles</div>
         <Link to="/ServiciosHome">
           <button className="add-button">Agregar Servicio</button>
@@ -37,14 +37,8 @@ function ServiciosScreen() {
       </div>
       <style jsx>{`
         .container {
-          display: fit;
+          display: flex;
           height: 100vh;
-        }
-
-        .div-18 {
-          color: var(--sgivBlue-700, #03318c);
-          font: 500 128px Poppins, sans-serif;
-          padding-right: 600px; 
         }
 
         .content {

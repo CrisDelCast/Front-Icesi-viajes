@@ -11,7 +11,8 @@ function DestinoAdd() {
     aire: '',
     mar: '',
     estado: '',
-  }); 
+    foto: null, // Agregar este campo
+  });
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
@@ -26,11 +27,27 @@ function DestinoAdd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(destinoData);
-      const response = await axios.post('http://localhost:5433/api/destinos/crear', destinoData);
+      const formData = new FormData();
+      formData.append('codigo', destinoData.codigo);
+      formData.append('nombre', destinoData.nombre);
+      formData.append('descripcion', destinoData.descripcion);
+      formData.append('tierra', destinoData.tierra);
+      formData.append('aire', destinoData.aire);
+      formData.append('mar', destinoData.mar);
+      formData.append('estado', destinoData.estado);
+      formData.append('idTide', destinoData.idTide || '1'); // Asegúrate de que sea una cadena vacía si está indefinido
+      formData.append('idDestinationCategory', destinoData.idDestinationCategory || '1'); // Asegúrate de que sea una cadena vacía si está indefinido  
+      formData.append('foto', destinoData.foto);
+
+  
+      const response = await axios.post('http://localhost:5433/api/destinos/crearDestinoConFoto', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       const nuevoDestino = response.data;
       console.log('Nuevo destino creado:', nuevoDestino);
-
+      // Aquí puedes agregar lógica adicional después de la creación exitosa del destino
     } catch (error) {
       console.error('Error al crear el destino:', error);
       setMessage('Error al crear el destino');
@@ -118,11 +135,18 @@ function DestinoAdd() {
                     required
                 >
                     <option value="">Seleccione una opción</option>
-                    <option value="A">Sí</option>
-                    <option value="I">No</option>
+                    <option value="A">Activo</option>
+                    <option value="I">Inactivo</option>
                 </select>
-            </div>
-           
+                </div>
+                  <div className="form-group">
+                <label>Foto:</label>
+                <input
+                  type="file"
+                  name="foto"
+                  onChange={(e) => setDestinoData({ ...destinoData, foto: e.target.files[0] })}
+                />
+              </div>
             <button type="submit">Crear Destino</button>
           </form>
           {message && <div className="error-message">{message}</div>}
