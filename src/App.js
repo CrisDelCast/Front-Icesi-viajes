@@ -10,6 +10,7 @@ import ClientesScreen from './Screen/ClientesScreen';
 import ClienteEditScreen from './Screen/ClienteEditScreen';
 import ServiciosHome from './Screen/ServiciosScreen';
 import ServiciosScreen from './Screen/ServiciosHome';
+import DestinoEditScreen from './Screen/DestinoEditScreen'; // Importación correcta
 
 function App() {
   return (  
@@ -26,7 +27,7 @@ function App() {
         <Route path="/ClienteEditScreen" element={<PrivateRoute><ClienteEditScreen /></PrivateRoute>} />
         <Route path="/ServiciosHome" element={<PrivateRoute><ServiciosHome /></PrivateRoute>} />
         <Route path="/ServiciosScreen" element={<PrivateRoute><ServiciosScreen /></PrivateRoute>} /> 
-
+        <Route path="/DestinoEditScreen/:id" element={<PrivateRoute><DestinoEditScreen /></PrivateRoute>} /> {/* Nueva ruta para editar destino */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
@@ -35,7 +36,6 @@ function App() {
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem('token');
-
   return isAuthenticated ? children : <Navigate to="/" />;
 };
 

@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const App = () => {
     const [destinos, setDestinos] = useState([]);
     const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      fetchDestinosDisponibles();
-    }, []);
-  
-    const fetchDestinosDisponibles = () => {
-      axios.get('http://localhost:5433/api/destinos/disponibles')
-        .then(response => {
-          setDestinos(response.data);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error('Error al obtener los destinos disponibles:', error);
-          setLoading(false);
-        });
-    };
-  
+    const navigate = useNavigate(); // Hook useNavigate para la redirección
 
-//   const handleCheckboxChange = (event) => {
-//     setDestino((prevData) => {
-//         return {
-//           ...prevData,
-//           idDestinos: prevData.idDestinos.filter((id) => id !== parseInt(value)),
-//         };
-//       })
-//     };
-//   };
+    useEffect(() => {
+        fetchDestinosDisponibles();
+    }, []);
+
+    const fetchDestinosDisponibles = () => {
+        axios.get('http://localhost:5433/api/destinos/disponibles')
+            .then(response => {
+                setDestinos(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error al obtener los destinos disponibles:', error);
+                setLoading(false);
+            });
+    };
+
+    const handleEditClick = (id) => {
+        navigate(`/DestinoEditScreen/${id}`); // Redirigir a la vista de editar
+    };
 
     if (loading) {
         return <p>Cargando destinos...</p>;
@@ -39,13 +33,14 @@ const App = () => {
 
     return (
         <div>
-        <ul>
-            {destinos.map(destino => (
-            <li key={destino.idDest}>
-                <Link to="/{destino.idDest}">{destino.nombre}</Link>
-            </li>
-            ))}
-        </ul>
+            <ul>
+                {destinos.map(destino => (
+                    <li key={destino.idDest}>
+                        <Link to={`/${destino.idDest}`}>{destino.nombre}</Link>
+                        <button onClick={() => handleEditClick(destino.idDest)}>Editar</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
