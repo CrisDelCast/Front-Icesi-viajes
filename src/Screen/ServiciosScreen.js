@@ -54,9 +54,11 @@ function ServiciosHome() {
 
   return (
     <>
-      <NavBar />
-      <div className="container">
-        <div className="form-container">
+      <div className="layout">
+        <div className="navbar-container">
+          <NavBar />
+        </div>
+        <div className="content-container">
           <h2>Crear Nuevo Servicio</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -115,17 +117,13 @@ function ServiciosHome() {
         </div>
       </div>
       <style jsx>{`
-        .container {
+        .layout {
           display: flex;
-          justify-content: center;
-          align-items: center;
           height: 100vh;
         }
-        .form-container {
-          width: 400px;
+        .content-container {
+          flex-grow: 1;
           padding: 20px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
         }
         .form-group {
           margin-bottom: 15px;
