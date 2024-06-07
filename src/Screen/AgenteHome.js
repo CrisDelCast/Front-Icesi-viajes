@@ -52,6 +52,15 @@ function AgenteHome() {
                   </Link>
                 </div>
                 <div className="column-7">
+                  <Link to="/ClientesScreen">
+                    <img
+                      loading="lazy"
+                      srcSet="/CLIENTES.png"
+                      className="img-12"
+                    />
+                  </Link>
+                </div>
+                <div className="column-7">
                 <Link to="/ReservasScreen">
                   <img
                     loading="lazy"

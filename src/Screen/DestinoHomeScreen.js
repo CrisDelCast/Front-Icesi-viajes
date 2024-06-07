@@ -6,6 +6,7 @@ import NavBar from '../Components/NavBar';
 function DestinoHome() {
   const [destinos, setDestinos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [rol, setRol] = useState('');
 
   useEffect(() => {
     const fetchDestinos = async () => {
@@ -18,10 +19,26 @@ function DestinoHome() {
     };
 
     fetchDestinos();
+
+    // Obtener el rol del usuario desde el localStorage
+    const storedRol = localStorage.getItem('rol');
+    if (storedRol) {
+      setRol(storedRol);
+    }
   }, []);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleDelete = async (id_dest) => {
+    try {
+      await axios.delete(`http://localhost:5433/api/destinos/eliminar/${id_dest}`);
+      // Actualizar la lista de destinos después de la eliminación
+      setDestinos(destinos.filter(destino => destino.id_dest !== id_dest));
+    } catch (error) {
+      console.error('Error al eliminar el destino:', error);
+    }
   };
 
   // Filtrar los destinos según el término de búsqueda
@@ -37,16 +54,26 @@ function DestinoHome() {
           <div className="div-5">
             <h1 className="div-8">Destinos</h1>
             <input type="text" placeholder="Buscar destinos..." value={searchTerm} onChange={handleSearchChange}/>
-            <span>Agregar: </span><Link to="/DestinoAdd"><div className="button-style">+</div></Link>
+            {rol === 'Administrador' || rol === 'Agente' ? (
+              <>
+                <span>Agregar: </span>
+                <Link to="/DestinoAdd">
+                  <div className="button-style">+</div>
+                </Link>
+              </>
+            ) : null}
           </div>  
           <div className="div-5 destino-list">
             {filteredDestinos.map((destino) => (
-              <Link key={destino.idDestino} to={`/destino/${destino.idDestino}`} className="destino-link">
-                <div className="destino-item">
+              <div key={destino.idDestino} className="destino-item">
+                <Link to={`/destino/${destino.codigo}`} className="destino-link">
                   <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
                   <div className="destino-name">{destino.nombre}</div>
-                </div>
-              </Link>
+                </Link>
+                {rol === 'Administrador' ? (
+                  <button className="delete-button" onClick={() => handleDelete(destino.codigo)}>Eliminar</button>
+                ) : null}
+              </div>
             ))}
           </div>
         </div>
@@ -126,6 +153,16 @@ function DestinoHome() {
           width: 40px;
           height: 40px;
           display: flex;
+        }
+
+        .delete-button {
+          background-color: red;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 10px;
         }
       `}</style>
     </div>
