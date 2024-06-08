@@ -98,8 +98,9 @@ function NavBar() {
           padding: 30px 22px;
           width: 50px;
           max-width: 100px; /* Ancho máximo ajustado */
-          margin: auto; /* Centrar la barra de navegación */
-          height: 100vh;
+          
+          /* Centrar la barra de navegación */
+          height: auto;
         }
         @media (max-width: 991px) {
           .nav-container {

@@ -89,9 +89,9 @@ function ServiciosScreen() {
                         <Link to={`/servicio/${servicio.idServicio}`}>{servicio.nombre}</Link>
                       </td>
                       <td>{servicio.descripcion}</td>
-                      <td>{servicio.precio}</td>
+                      <td>${servicio.precio}</td>
                       <td>
-                        <button onClick={() => eliminarServicio(servicio.idServicio)}>Eliminar</button>
+                        <button onClick={() => eliminarServicio(servicio.id)}>Eliminar</button>
                       </td>
                     </tr>
                   ))}

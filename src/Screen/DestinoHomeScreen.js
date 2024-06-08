@@ -46,6 +46,11 @@ function DestinoHome() {
     destino.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Agrupar destinos por categoría
+  const tierraDestinos = filteredDestinos.filter(destino => destino.tierra === 'Y');
+  const marDestinos = filteredDestinos.filter(destino => destino.mar === 'Y');
+  const aireDestinos = filteredDestinos.filter(destino => destino.aire === 'Y');
+
   return (
     <div className="container">
       <NavBar />
@@ -62,19 +67,57 @@ function DestinoHome() {
                 </Link>
               </>
             ) : null}
-          </div>  
-          <div className="div-5 destino-list">
-            {filteredDestinos.map((destino) => (
-              <div key={destino.idDestino} className="destino-item">
-                <Link to={`/destino/${destino.codigo}`} className="destino-link">
-                  <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
-                  <div className="destino-name">{destino.nombre}</div>
-                </Link>
-                {rol === 'Administrador' ? (
-                  <button className="delete-button" onClick={() => handleDelete(destino.codigo)}>Eliminar</button>
-                ) : null}
-              </div>
-            ))}
+          </div>
+
+          <div className="destino-category">
+            <h2>Tierra</h2>
+            <div className="destino-list">
+              {tierraDestinos.map((destino) => (
+                <div key={destino.idDestino} className="destino-item">
+                  <Link to={`/destino/${destino.codigo}`} className="destino-link">
+                    <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
+                    <div className="destino-name">{destino.nombre}</div>
+                  </Link>
+                  {rol === 'Administrador' ? (
+                    <button className="delete-button" onClick={() => handleDelete(destino.codigo)}>Eliminar</button>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="destino-category">
+            <h2>Mar</h2>
+            <div className="destino-list">
+              {marDestinos.map((destino) => (
+                <div key={destino.idDestino} className="destino-item">
+                  <Link to={`/destino/${destino.codigo}`} className="destino-link">
+                    <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
+                    <div className="destino-name">{destino.nombre}</div>
+                  </Link>
+                  {rol === 'Administrador' ? (
+                    <button className="delete-button" onClick={() => handleDelete(destino.codigo)}>Eliminar</button>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="destino-category">
+            <h2>Aire</h2>
+            <div className="destino-list">
+              {aireDestinos.map((destino) => (
+                <div key={destino.idDestino} className="destino-item">
+                  <Link to={`/destino/${destino.codigo}`} className="destino-link">
+                    <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
+                    <div className="destino-name">{destino.nombre}</div>
+                  </Link>
+                  {rol === 'Administrador' ? (
+                    <button className="delete-button" onClick={() => handleDelete(destino.codigo)}>Eliminar</button>
+                  ) : null}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -113,12 +156,21 @@ function DestinoHome() {
           font-weight: 900;
         }
 
+        .destino-category {
+          margin-top: 40px;
+        }
+
+        .destino-category h2 {
+          font-size: 30px;
+          color: #03318c;
+          margin-bottom: 20px;
+        }
+
         .destino-list {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           gap: 20px;
           justify-items: center;
-          margin-top: 20px;
         }
 
         .destino-link {

@@ -15,6 +15,7 @@ function ReservasScreen() {
   });
   const [clientes, setClientes] = useState([]);
   const [planes, setPlanes] = useState([]);
+  const [agentes, setAgentes] = useState([]);
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -27,6 +28,32 @@ function ReservasScreen() {
     };
 
     fetchClientes();
+  }, []);
+
+  useEffect(() => {
+    const fetchPlanes = async () => {
+      try {
+        const response = await axios.get('http://localhost:5433/api/planes/extraer');
+        setPlanes(response.data);
+      } catch (error) {
+        console.error('Error al obtener los planes:', error);
+      }
+    };
+
+    fetchPlanes();
+  }, []);
+
+  useEffect(() => {
+    const fetchAgentes = async () => {
+      try {
+        const response = await axios.get('http://localhost:5433/api/usuarios/listar');
+        setAgentes(response.data);
+      } catch (error) {
+        console.error('Error al obtener los agentes:', error);
+      }
+    };
+
+    fetchAgentes();
   }, []);
 
   const handleInputChange = (event) => {
@@ -43,19 +70,6 @@ function ReservasScreen() {
       console.error('Error al crear la reserva:', error);
     }
   };
-
-  useEffect(() => {
-    const fetchPlanes = async () => {
-      try {
-        const response = await axios.get('http://localhost:5433/api/planes/extraer');
-        setPlanes(response.data);
-      } catch (error) {
-        console.error('Error al obtener los planes:', error);
-      }
-    };
-
-    fetchPlanes();
-  }, []);
 
   return (
     <div className="container">
@@ -104,8 +118,13 @@ function ReservasScreen() {
             <input type="text" id="estado" name="estado" value={reservaData.estado} onChange={handleInputChange} required />
           </div>
           <div className="form-group">
-            <label htmlFor="idAgente">ID Agente:</label>
-            <input type="text" id="idAgente" name="idAgente" value={reservaData.idAgente} onChange={handleInputChange} required />
+            <label htmlFor="idAgente">Agente:</label>
+            <select id="idAgente" name="idAgente" value={reservaData.idAgente} onChange={handleInputChange} required>
+              <option value="">Selecciona un agente</option>
+              {agentes.map(agente => (
+                <option key={agente.idUsua} value={agente.idUsua}>{agente.nombre}</option>
+              ))}
+            </select>
           </div>
           <button type="submit">Crear Reserva</button>
         </form>
@@ -116,6 +135,10 @@ function ReservasScreen() {
           height: 100vh;
         }
         
+        .sidebar {
+          width: 250px;
+          background: #f8f9fa;
+        }
         
         .content {
           flex: 1;
