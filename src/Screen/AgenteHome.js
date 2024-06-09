@@ -51,6 +51,15 @@ function AgenteHome() {
                   />
                   </Link>
                 </div>
+                <div className="column-7">
+                <Link to ="/ReservasScreen">
+                  <img
+                    loading="lazy"
+                    src="/PLANES.png"
+                    className="img-11"
+                  />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -276,6 +285,18 @@ function AgenteHome() {
           line-height: normal;
           width: 33%;
           margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+          .column-6 {
+            width: 100%;
+          }
+        }
+        .column-7 {
+          display: flex;
+          flex-direction: column;
+          line-height: normal;
+          width: 33%;
+          margin-left: 60px;
         }
         @media (max-width: 991px) {
           .column-6 {
