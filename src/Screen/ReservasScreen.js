@@ -6,16 +6,18 @@ function ReservasScreen() {
   const [reservaData, setReservaData] = useState({
     idCliente: '',
     idPlan: '',
+    idDestino: '',
     fechaInicio: '',
     fechaFin: '',
     numeroPersonas: '',
     precioTotal: '',
     estado: '',
-    idAgente: ''
+    idAgente: '',
   });
   const [clientes, setClientes] = useState([]);
   const [planes, setPlanes] = useState([]);
   const [agentes, setAgentes] = useState([]);
+  const [destinos,setDestinos] = useState([]);
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -46,7 +48,7 @@ function ReservasScreen() {
   useEffect(() => {
     const fetchAgentes = async () => {
       try {
-        const response = await axios.get('http://localhost:5433/api/usuarios/listar');
+        const response = await axios.get('http://localhost:5433/api/usuarios/usuariostotal');
         setAgentes(response.data);
       } catch (error) {
         console.error('Error al obtener los agentes:', error);
@@ -54,6 +56,19 @@ function ReservasScreen() {
     };
 
     fetchAgentes();
+  }, []);
+
+  useEffect(() => {
+    const fetchDestinos = async () => {
+      try {
+        const response = await axios.get('http://localhost:5433/api/destinos/disponibles');
+        setDestinos(response.data);
+      } catch (error) {
+        console.error('Error al obtener los destinos:', error);
+      }
+    };
+
+    fetchDestinos();
   }, []);
 
   const handleInputChange = (event) => {
@@ -64,7 +79,8 @@ function ReservasScreen() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5433/reservas/crear', reservaData);
+        console.log(reservaData);
+      const response = await axios.post('http://localhost:5433/api/reservas/crear', reservaData);
       console.log('Reserva creada:', response.data);
     } catch (error) {
       console.error('Error al crear la reserva:', error);
@@ -98,6 +114,15 @@ function ReservasScreen() {
             </select>
           </div>
           <div className="form-group">
+            <label htmlFor="idDestino">Destino:</label>
+            <select id="idDestino" name="idDestino" value={reservaData.idDestino} onChange={handleInputChange} required>
+              <option value="">Selecciona un Destino</option>
+              {destinos.map((destino) => (
+                <option key={destino.idDest} value={destino.idDest}>{destino.nombre}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
             <label htmlFor="fechaInicio">Fecha de Inicio:</label>
             <input type="date" id="fechaInicio" name="fechaInicio" value={reservaData.fechaInicio} onChange={handleInputChange} required />
           </div>
@@ -121,14 +146,15 @@ function ReservasScreen() {
             <label htmlFor="idAgente">Agente:</label>
             <select id="idAgente" name="idAgente" value={reservaData.idAgente} onChange={handleInputChange} required>
               <option value="">Selecciona un agente</option>
-              {agentes.map(agente => (
-                <option key={agente.idUsua} value={agente.idUsua}>{agente.nombre}</option>
+              {agentes.map((agente)=> (
+                <option key={agente.id} value={agente.id}>{agente.nombre}</option>
               ))}
             </select>
           </div>
           <button type="submit">Crear Reserva</button>
         </form>
       </div>
+      
       <style jsx>{`
         .container {
           display: flex;
