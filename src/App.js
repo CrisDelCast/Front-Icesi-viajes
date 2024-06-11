@@ -30,6 +30,7 @@ function App() {
         <Route path="/PlanesScreen" element={<PrivateRoute><PlanesScreen /></PrivateRoute>} />
         <Route path="/DestinoHome" element={<PrivateRoute><DestinoHome /></PrivateRoute>} /> 
         <Route path="/DestinoAdd" element={<PrivateRoute><DestinoAdd /></PrivateRoute>} /> 
+        <Route path="/DestinoDetalle" element={<PrivateRoute><DestinoDetalle /></PrivateRoute>} /> 
         <Route path="/ClientesScreen" element={<PrivateRoute><ClientesScreen /></PrivateRoute>} /> 
         <Route path="/ServiciosHome" element={<PrivateRoute><ServiciosHome /></PrivateRoute>} />
         <Route path="/ServiciosScreen" element={<PrivateRoute><ServiciosScreen /></PrivateRoute>} /> 

@@ -74,7 +74,7 @@ function DestinoHome() {
             <div className="destino-list">
               {tierraDestinos.map((destino) => (
                 <div key={destino.idDestino} className="destino-item">
-                  <Link to={`/destino/${destino.codigo}`} className="destino-link">
+                  <Link to={`/DestinoDetalle/?id=${destino.codigo}`} className="destino-link">
                     <img className="destino-image" src={destino.fotoUrl} alt={destino.nombre} />
                     <div className="destino-name">{destino.nombre}</div>
                   </Link>
