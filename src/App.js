@@ -17,6 +17,7 @@ import DestinoDetalle from './Screen/DestinoDetalle';
 import ReservasScreen from './Screen/ReservasScreen';
 import ReservasHomeScreen from './Screen/ReservasHome';
 import ReservaEditScreen from './Screen/ReservaEditScreen';
+import PlanEditScreen from './Screen/PlanEditScreen';
 
 function App() {
   return (  
@@ -40,6 +41,8 @@ function App() {
         <Route path="/ReservasScreen" element={<PrivateRoute><ReservasScreen /></PrivateRoute>} />
         <Route path="/ReservasHomeScreen" element={<PrivateRoute><ReservasHomeScreen /></PrivateRoute>} />
         <Route path="/ReservaEditScreen" element={<PrivateRoute><ReservaEditScreen /></PrivateRoute>} /> 
+        <Route path="/PlanEditScreen" element={<PrivateRoute><PlanEditScreen /></PrivateRoute>} /> 
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

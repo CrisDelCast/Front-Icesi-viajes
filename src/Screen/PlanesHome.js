@@ -53,9 +53,7 @@ function PlanesScreen() {
               {planes.map((plan) => (
                 <tr key={plan.idPlan}>
                   <td>
-                    <Link to={`/plan/${plan.idPlan}`} className="plan-link">
-                      {plan.nombre}
-                    </Link>
+                    <Link to={`/PlanEditScreen/?id=${plan.idPlan}`}>{plan.idPlan}</Link>
                   </td>
                   <td>{plan.cantidadPersonas}</td>
                   <td>${plan.valorTotal}</td>
