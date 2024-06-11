@@ -79,6 +79,7 @@ function ReservasHomeScreen() {
                     <th>Estado</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Final</th>
+                    <th>Agente</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -90,6 +91,7 @@ function ReservasHomeScreen() {
                         <td>{reserva.estado}</td>
                         <td>{reserva.fechaInicio}</td>
                         <td>{reserva.fechaFin}</td>
+                        <td>{reserva.idAgente}</td>
                         <td>
                             <button onClick={() => eliminarReserva(reserva.id)}>Eliminar</button>
                         </td>

@@ -64,7 +64,7 @@ function Home() {
                 </div>
 
                 <div className="column-7">
-                <Link to="/ReservasScreen">
+                <Link to="/ReservasHomeScreen">
                   <img
                     loading="lazy"
                     srcSet="/RESERVAS.png"

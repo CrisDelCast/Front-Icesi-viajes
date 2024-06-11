@@ -151,9 +151,9 @@ function DestinoHome() {
         }
 
         .div-8 {
-          color: #03318c;
-          font-size: 47px;
-          font-weight: 900;
+          color: var(--sgivBlue-700, #03318c);
+          font: 500 128px Poppins, sans-serif;
+          
         }
 
         .destino-category {

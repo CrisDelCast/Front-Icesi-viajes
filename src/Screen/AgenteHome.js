@@ -97,6 +97,7 @@ function AgenteHome() {
           flex-direction: column;
           flex: 1;
           padding: 54px 0;
+          padding-left: 20px;
         }
         @media (max-width: 991px) {
           .div-4 {

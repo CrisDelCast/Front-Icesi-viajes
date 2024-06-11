@@ -37,7 +37,7 @@ function ReservaEditScreen() {
  <div className="container">
         <NavBar />
         <div className="content">
-          <h1>{reserva.id}</h1>
+          <h1>{"Reserva "+reserva.id}</h1>
           <table>
             <tbody>
               <tr>
@@ -52,6 +52,16 @@ function ReservaEditScreen() {
                 <td>Fecha de inicio</td>
                 <td>{reserva.fechaInicio}</td>
               </tr>
+              <tr>
+                <td>Precio Total</td>
+                <td>{"$ "+reserva.precioTotal}</td>
+              </tr>
+
+              <tr>
+                <td>Numero de personas </td>
+                <td>{reserva.numeroPersonas}</td>
+              </tr>
+
             </tbody>
           </table>
         </div>
