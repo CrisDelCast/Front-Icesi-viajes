@@ -19,20 +19,56 @@ function PlanesScreen() {
     fetchPlanes();
   }, []);
 
+  const eliminarPlan = async (idPlan) => {
+    try {
+      await axios.delete(`http://localhost:5433/api/planes/${idPlan}`);
+      // Eliminar el plan de la lista después de la eliminación exitosa
+      setPlanes(planes.filter(plan => plan.idPlan !== idPlan));
+      console.log('Plan eliminado correctamente');
+    } catch (error) {
+      console.error('Error al eliminar el plan:', error);
+    }
+  };
+
   return (
     <div className="container">
       <NavBar />
       <div className="content">
-      <div className="div-18">Planes disponibles</div>
+        <div className="div-18">Planes disponibles</div>
         <Link to="/PlanesHome">
           <button className="add-button">Agregar Plan</button>
         </Link>
         <div className="plan-list">
-          {planes.map((plan) => (
-            <Link key={plan.idPlan} to={`/plan/${plan.idPlan}`} className="plan-link">
-              <button className="plan-button" style={{backgroundImage: `url(PAISAJE.png)`}}>{plan.nombre}</button>
-            </Link>
-          ))}
+          <table className="plan-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad Personas</th>
+                <th>Valor Total</th>
+                <th>Estado</th>
+                <th>Acciones</th> 
+              </tr>
+            </thead>
+            <tbody>
+              {planes.map((plan) => (
+                <tr key={plan.idPlan}>
+                  <td>
+                    <Link to={`/plan/${plan.idPlan}`} className="plan-link">
+                      {plan.nombre}
+                    </Link>
+                  </td>
+                  <td>{plan.cantidadPersonas}</td>
+                  <td>${plan.valorTotal}</td>
+                  <td>{plan.estado}</td>
+                  <td>
+                    <button onClick={() => eliminarPlan(plan.idPlan)} className="delete-button">
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       <style jsx>{`
@@ -62,6 +98,7 @@ function PlanesScreen() {
           border: none;
           border-radius: 5px;
           cursor: pointer;
+          margin-bottom: 10px;
         }
 
         .add-button:hover {
@@ -69,44 +106,35 @@ function PlanesScreen() {
         }
 
         .plan-list {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta los elementos en filas de 3 */
-          gap: 10px; /* Espacio entre los botones */
-          justify-items: center; /* Centrar los botones horizontalmente */
           width: 100%;
-          max-width: 600px;
-          align-items: center;
+          max-width: 800px;
+          overflow-x: auto;
+        }
+
+        .plan-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .plan-table th, .plan-table td {
+          border: 1px solid #ccc;
+          padding: 8px;
+          text-align: left;
+        }
+
+        .plan-table th {
+          background-color: #f2f2f2;
+          color: #333;
         }
 
         .plan-link {
           text-decoration: none;
-          width: 100%;
-        }
-
-        .plan-button {
-          padding: 10px 20px;
-          background-color: #f0f0f0;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          cursor: pointer;
-          width: 100%;
-          text-align: left;
-          background-size: cover; /* Asegura que la imagen de fondo cubra todo el botón */
-          height: 200px; /* Ajusta la altura del botón al tamaño de la imagen */
-          border-radius: 30px;
-        }
-
-        .plan-button:hover {
-          background-color: #e0e0e0;
+          color: inherit;
         }
 
         @media (max-width: 991px) {
           .content {
             padding: 10px;
-          }
-
-          .plan-button {
-            padding: 8px 16px;
           }
         }
       `}</style>
