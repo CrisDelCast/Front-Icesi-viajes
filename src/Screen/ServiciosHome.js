@@ -90,7 +90,7 @@ function ServiciosScreen() {
                       <td>
                       <Link to={`/ServicioEditScreen/?id=${servicio.id}`}>{servicio.id}</Link>
                       </td>
-                      <td>{servicio.id}</td>
+                      <td>{servicio.nombre}</td>
                       <td>{servicio.descripcion}</td>
                       <td>${servicio.precio}</td>
                       <td>

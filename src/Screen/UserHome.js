@@ -101,7 +101,7 @@ function UserHome() {
                         <td>{usuario.estado}</td>
                         <td>{usuario.rolesStr}</td>
                         <td>
-                            <button onClick={() => eliminarusuario(usuario.identificacion)}>Eliminar</button>
+                            <button onClick={() =>null}>Eliminar</button>
                         </td>
                         </tr>
                     ))}
