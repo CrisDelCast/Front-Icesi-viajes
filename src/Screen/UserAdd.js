@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
@@ -94,9 +94,9 @@ function UserAdd() {
 
   return (
     <>
-      <div className="Usuarioadd-container">
+      <div className='container'>
         <NavBar />
-        <div className="main-content">
+        <div className="content">
           <div className="form-container">
             <div className="form-title">Crear Usuario</div>
             <form onSubmit={handleSubmit} className="form">
@@ -157,6 +157,19 @@ function UserAdd() {
         </div>
       </div>
       <style jsx>{`
+                .container {
+                    background-color: #fdfdfd;
+                    display: flex;
+                    gap: 0px;
+                    }
+
+                    .content {
+                    flex: 1;
+                    padding-top: 80px;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    }
                 .clienteadd-container {
                   display: flex;
                 }
