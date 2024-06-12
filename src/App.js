@@ -22,6 +22,7 @@ import ServicioEditScreen from './Screen/ServicioEditScreen';
 import UserHome from './Screen/UserHome';
 import UserAdd from './Screen/UserAdd';
 import UserDetail from './Screen/UserDetail';
+import UserEditScreen from './Screen/UserEditScreen';
 
 function App() {
   return (  
@@ -49,6 +50,7 @@ function App() {
         <Route path="/PlanEditScreen" element={<PrivateRoute><PlanEditScreen /></PrivateRoute>} /> 
         <Route path="/ServicioEditScreen" element={<PrivateRoute><ServicioEditScreen /></PrivateRoute>} />
         <Route path="/userHome" element={<PrivateRoute><UserHome /></PrivateRoute>} />
+        <Route path="/UserEditScreen" element={<PrivateRoute><UserEditScreen /></PrivateRoute>} />
         <Route path="/userAdd" element={<PrivateRoute><UserAdd /></PrivateRoute>} />
         <Route path="/UserDetail" element={<PrivateRoute><UserDetail /></PrivateRoute>} />
 

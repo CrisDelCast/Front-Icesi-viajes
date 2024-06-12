@@ -29,7 +29,7 @@ function ClienteAdd() {
   };
 
   const handleDateChange = (event) => {
-    setUserData({ ...userData, fechaNacimiento: new Date(event.target.value) });
+    setUserData({ ...userData, fechaNacimiento: event.target.value});
 }
 
 
@@ -61,7 +61,7 @@ function ClienteAdd() {
         }
       );
       setMessage('Cliente creado exitosamente');
-      navigate('/ClienteScreen');
+      navigate('/ClientesScreen');
     } catch (error) {
       console.error('Error al crear cliente:', error);
       setMessage('Error al crear cliente');

@@ -80,18 +80,18 @@ function UserHome() {
                 </div>
                 
 
-                <div className="div-14">
-                <div className="table-wrapper">
-                <table className="usuarios-table">
-                    <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>ID</th>
-                        <th>Estado</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
+            <div className="div-14">
+            <div className="table-wrapper">
+              <table className="usuarios-table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
                     <tbody>
                     {filteredUser.map(usuario => (
                         <tr key={usuario.identificacion}>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 
-function UsuarioAdd() {
+function UserAdd() {
     const [userData, setUserData] = useState({
         login: '',
         password: '',
@@ -15,14 +15,15 @@ function UsuarioAdd() {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
     
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserData((prevState) => ({
-        ...prevState,
-        [name]: value,
-        }));
-    };
+  
 
     // const handleDateChange = (event) => {
     //     setUserData({ ...userData, fechaNacimiento: new Date(event.target.value) });
@@ -77,8 +78,7 @@ function UsuarioAdd() {
             formData,
             {
                 headers: {
-                //'Content-Type': 'multipart/form-data', // Establecer el tipo de contenido como multipart/form-data
-                'Content-Type': 'application/json', // Establecer el tipo de contenido como multipart/form-data
+                //'Content-Type': 'application/json', // Establecer el tipo de contenido como multipart/form-data
                 'Content-Type': 'multipart/form-data', // Establecer el tipo de contenido como multipart/form-data
                 },
             }
@@ -89,11 +89,12 @@ function UsuarioAdd() {
             console.error('Error al crear usuario:', error);
             setMessage('Error al crear usuario');
         }
-    };
+    }
 
-    return (
+
+  return (
     <>
-      <div className="usuarioadd-container">
+      <div className="Usuarioadd-container">
         <NavBar />
         <div className="main-content">
           <div className="form-container">
@@ -148,9 +149,6 @@ function UsuarioAdd() {
                         <option value={3}>Agente</option>
                     </select>
                 </div>
-                
-
-                
 
               <button type="submit" className="form-button">Crear Usuario</button>
             </form>
@@ -159,7 +157,7 @@ function UsuarioAdd() {
         </div>
       </div>
       <style jsx>{`
-                .usuarioadd-container {
+                .clienteadd-container {
                   display: flex;
                 }
                 .main-content {
@@ -257,10 +255,12 @@ function UsuarioAdd() {
                   font: 18px Lato, sans-serif;
                   text-align: center;
                 }
-      `}</style>
+            `}</style>
     </>
-  );
+    );
 
+
+    
 }
 
-export default UsuarioAdd;
+export default UserAdd;
