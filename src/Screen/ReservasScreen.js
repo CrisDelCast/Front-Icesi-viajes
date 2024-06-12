@@ -136,7 +136,7 @@ function ReservasScreen() {
           </div>
           <div className="form-group">
             <label htmlFor="precioTotal">Precio Total:</label>
-            <input type="number" id="precioTotal" name="precioTotal" value={reservaData.precioTotal} onChange={handleInputChange} required />
+            <input type="precio" id="precioTotal" name="precioTotal" value={reservaData.precioTotal} onChange={handleInputChange} required />
           </div>
           <div className="form-group">
             <label htmlFor="estado">Estado:</label>

@@ -20,6 +20,8 @@ import ReservaEditScreen from './Screen/ReservaEditScreen';
 import PlanEditScreen from './Screen/PlanEditScreen';
 import ServicioEditScreen from './Screen/ServicioEditScreen';
 import UserHome from './Screen/UserHome';
+import UserAdd from './Screen/UserAdd';
+import UserEditScreen from './Screen/UserEditScreen';
 
 
 function App() {
@@ -48,6 +50,9 @@ function App() {
         <Route path="/PlanEditScreen" element={<PrivateRoute><PlanEditScreen /></PrivateRoute>} /> 
         <Route path="/ServicioEditScreen" element={<PrivateRoute><ServicioEditScreen /></PrivateRoute>} />
         <Route path="/userHome" element={<PrivateRoute><UserHome /></PrivateRoute>} />
+        <Route path="/UserAdd" element={<PrivateRoute><UserAdd /></PrivateRoute>} />
+        <Route path="/UserEditScreen" element={<PrivateRoute><UserEditScreen /></PrivateRoute>} />
+        
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
