@@ -4,13 +4,10 @@ import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar'; 
 
 function UserHome() {
-    //const [usuarios, setusuarios] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [rol, setRol] = useState('');
     const [loading, setLoading] = useState(true);
-
-
     
     useEffect(() => {
         fetchUsuarios();
@@ -20,6 +17,7 @@ function UserHome() {
         if (storedRol) {
         setRol(storedRol);
         }
+        
     }, []);
 
     const fetchUsuarios = () => {
@@ -53,27 +51,33 @@ function UserHome() {
         usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    
+
     if (loading) {
-        return <p>Cargando destinos...</p>;
+        return <p>Cargando Usuarios...</p>;
     }
+
 
     return (
     <div className="container">
         <NavBar />
         <div className="content">
             <div className="div-4">
-            <div className="div-5">
-                <h1 className="div-8">Usuarios</h1>
-                <input type="text" placeholder="Buscar usuarios..." value={searchTerm} onChange={handleSearchChange}/>
-                {rol === 'Administrador' || rol === 'Agente' ? (
-                <>
-                    <span>Agregar: </span>
-                    <Link to="/UserAdd">
-                    <div className="button-style">+</div>
-                    </Link>
-                </>
-                ) : null}
-            </div>
+            <span>Viendo desde Rol: {rol}</span>
+                <div className="div-5">
+                    <h1 className="div-8">Usuarios</h1>
+                    
+                    <input type="text" placeholder="Buscar usuarios..." value={searchTerm} onChange={handleSearchChange}/>
+                    {rol === 'Administrador' || rol === 'Agente' ? (
+                    <>
+                        <span>Agregar: </span>
+                        <Link to="/UserAdd">
+                        <div className="button-style">+</div>
+                        </Link>
+                    </>
+                    ) : null}
+                </div>
+                
 
             <div className="div-14">
             <div className="table-wrapper">
@@ -87,26 +91,24 @@ function UserHome() {
                     <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {filteredUser.map(usuario => (
-                    <tr key={usuario.idUsua}>
-                      <td>
-                        <Link to={`/usuarioEditScreen/?id=${usuario.idUsua}`}>{usuario.nombre}</Link>
-                      </td>
-                      <td>{usuario.identificacion}</td>
-                      <td>{usuario.estado}</td>
-                      <td>{usuario.rolesStr}</td>
-                      <td>
-                        <button onClick={() => handleDelete(usuario.idUsua)}>Eliminar</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                    <tbody>
+                    {filteredUser.map(usuario => (
+                        <tr key={usuario.identificacion}>
+                        <td>
+                            <Link to={`/usuarioEditScreen/?id=${usuario.identificacion}`}>{usuario.nombre}</Link>
+                        </td>
+                        <td>{usuario.identificacion}</td>
+                        <td>{usuario.estado}</td>
+                        <td>{usuario.rolesStr}</td>
+                        <td>
+                            <button onClick={() =>null}>Eliminar</button>
+                        </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                </div>
             </div>
-            
-            
-          </div>
 
             {/* <div className="usuario-category">
                 <div className="usuario-list">
