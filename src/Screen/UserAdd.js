@@ -5,14 +5,12 @@ import NavBar from '../Components/NavBar';
 
 function UsuarioAdd() {
     const [userData, setUserData] = useState({
-
-        id: '',
         login: '',
         password: '',
         nombre: '',
         identificacion: '',
         estado: '',
-        roles: '',
+        roles: 1,
     });
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
@@ -26,16 +24,12 @@ function UsuarioAdd() {
         }));
     };
 
-
-
     // const handleDateChange = (event) => {
     //     setUserData({ ...userData, fechaNacimiento: new Date(event.target.value) });
     // }   
 
     useEffect(() => {
         // Petición al servidor para obtener los roles 
-        
-
         //fetchRoles(); // Llamada a la función para obtener los roles  al cargar el componente
     }, []); // El segundo argumento [] indica que el efecto se ejecutará solo una vez al montar el componente
 
@@ -76,14 +70,15 @@ function UsuarioAdd() {
             Object.keys(userData).forEach((key) => {
             formData.append(key, userData[key]);
             });
-            // Agregar el archivo de imagen al FormData
-            //formData.append('foto', userData.foto);
+            console.log("FormData ---- " + formData.get("roles"))
 
             const response = await axios.post(
             'http://localhost:5433/api/usuarios/crear',
             formData,
             {
                 headers: {
+                //'Content-Type': 'multipart/form-data', // Establecer el tipo de contenido como multipart/form-data
+                'Content-Type': 'application/json', // Establecer el tipo de contenido como multipart/form-data
                 'Content-Type': 'multipart/form-data', // Establecer el tipo de contenido como multipart/form-data
                 },
             }
@@ -148,41 +143,15 @@ function UsuarioAdd() {
                 <div className="form-group">
                     <label className="form-label">Rol</label>
                     <select name="rol" value={userData.roles} onChange={handleChange}>
-                        <option value="1">Administrador</option>
-                        <option value="2">Visualizador</option>
-                        <option value="3">Agente</option>
+                        <option value={1}>Administrador</option>
+                        <option value={2}>Visualizador</option>
+                        <option value={3}>Agente</option>
                     </select>
                 </div>
                 
 
-                {/* {rolesT.length == 0 ? (
-                    <div>Cargando roles...</div>
-                    ) : (
-                    <div>
-                        <label htmlFor="roles">Roles:</label>
-                        <select id="roles" name="roles" value={userData.roles} onChange={handleChange} required>
-                        <option value="">Selecciona un rol</option>
-                        {rolesT.map((roltab) => (
-                            <option key={roltab.id} value={roltab.id}>{roltab.nombre}</option>
-                        ))}
-                        </select>
-                    </div>
-                )} */}
-
                 
 
-                
-              
-              {/* <div className="form-group">
-                <label className="form-label">Foto</label>
-                <input
-                  type="file"
-                  name="foto"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="form-input"
-                />
-              </div> */}
               <button type="submit" className="form-button">Crear Usuario</button>
             </form>
             {message && <div className="form-message">{message}</div>}

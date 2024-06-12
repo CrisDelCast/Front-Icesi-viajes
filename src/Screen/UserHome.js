@@ -36,7 +36,7 @@ function UserHome() {
         setSearchTerm(event.target.value);
     };
 
-    const handleDelete = async (id_usua) => {
+    const eliminarUsuario = async (id_usua) => {
         try {
         await axios.delete(`http://localhost:5433/api/usuarios/eliminar/${id_usua}`);
         // Actualizar la lista de usuarios después de la eliminación
@@ -45,6 +45,7 @@ function UserHome() {
         console.error('Error al eliminar el usuario:', error);
         }
     };
+
 
     // Filtrar los usuarios según el término de búsqueda
     const filteredUser = usuarios.filter(usuario =>
@@ -95,13 +96,13 @@ function UserHome() {
                     {filteredUser.map(usuario => (
                         <tr key={usuario.identificacion}>
                         <td>
-                            <Link to={`/usuarioEditScreen/?id=${usuario.identificacion}`}>{usuario.nombre}</Link>
+                            <Link to={`/UserDetail/?id=${usuario.id}`}>{usuario.nombre}</Link>
                         </td>
                         <td>{usuario.identificacion}</td>
                         <td>{usuario.estado}</td>
                         <td>{usuario.rolesStr}</td>
                         <td>
-                            <button onClick={() => eliminarusuario(usuario.identificacion)}>Eliminar</button>
+                            <button onClick={() => eliminarUsuario(usuario.identificacion)}>Eliminar</button>
                         </td>
                         </tr>
                     ))}
