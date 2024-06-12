@@ -1,35 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 function NavBar() {
   const [rol, setRol] = useState('');
+  const navigate = useNavigate(); // Use useNavigate for redirects within functions
 
   useEffect(() => {
-    // Obtener el rol del usuario desde el localStorage
+    // Retrieve stored user role
     const storedRol = localStorage.getItem('rol');
     if (storedRol) {
       setRol(storedRol);
     }
-  }, []);
+  }, []); // Empty dependency array to run only once
 
   const handleLogoClick = () => {
-    // Redirigir al usuario a la página correspondiente según su rol
-    if (rol === 'Administrador') {
-      return <Link to="/HomeScreen" />;
-    } else if (rol === 'Agente') {
-      return <Link to="/AgenteHome" />;
-    } else if (rol === 'Viewer') {
-      return <Link to="/ViewerHome" />;
+    // Redirect based on user role
+    
+    switch (rol) {
+      case 'Administrador':
+        navigate('/HomeScreen');
+        break;
+      case 'Agente':
+        navigate('/AgenteHome'); // Optional one-time redirect
+        break;
+      case 'Viewer':
+        navigate('/ViewerHome');
+        break;
+      default:
+        // Handle cases where rol is not set or invalid
+        console.warn('Invalid user role:', rol);
+        break;
     }
   };
 
   return (
     <>
       <div className="nav-container">
-        <div className="nav-header" onClick={handleLogoClick}>
+      
+        <a href="" className="nav-header" onClick={handleLogoClick}>
           <span className="nav-title-bold">A</span>
           <span className="nav-title-light">t</span>
-        </div>
+        </a>
         
         <Link to="/DestinoHome">
           <img
