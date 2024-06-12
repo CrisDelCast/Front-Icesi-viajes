@@ -16,7 +16,7 @@ function NavBar() {
 
   const handleLogoClick = () => {
     // Redirect based on user role
-    
+
     switch (rol) {
       case 'Administrador':
         navigate('/HomeScreen');
@@ -92,11 +92,14 @@ function NavBar() {
           />
         </Link>
 
-        <img
-          loading="lazy"
-          src="./PFP.png"
-          className="nav-icon nav-icon-bottom"
-        />
+        <Link to="/UserHome">
+          <img
+            loading="lazy"
+            src="./PFP.png"
+            className="nav-icon nav-icon-bottom"
+          />
+        </Link>
+        
       </div>
       <style jsx>{`
         .nav-container {

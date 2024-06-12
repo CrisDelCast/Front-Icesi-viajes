@@ -18,7 +18,9 @@ import ReservasScreen from './Screen/ReservasScreen';
 import ReservasHomeScreen from './Screen/ReservasHome';
 import ReservaEditScreen from './Screen/ReservaEditScreen';
 import PlanEditScreen from './Screen/PlanEditScreen';
-import ServicioEditScreen from './Screen/ServicioEditScreen'; // Importar el componente ServicioEditScreen
+import ServicioEditScreen from './Screen/ServicioEditScreen';
+import UserHome from './Screen/UserHome';
+
 
 function App() {
   return (  
@@ -45,6 +47,7 @@ function App() {
         <Route path="/ReservaEditScreen" element={<PrivateRoute><ReservaEditScreen /></PrivateRoute>} /> 
         <Route path="/PlanEditScreen" element={<PrivateRoute><PlanEditScreen /></PrivateRoute>} /> 
         <Route path="/ServicioEditScreen" element={<PrivateRoute><ServicioEditScreen /></PrivateRoute>} />
+        <Route path="/userHome" element={<PrivateRoute><UserHome /></PrivateRoute>} />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
