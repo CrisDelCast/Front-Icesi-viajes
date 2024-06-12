@@ -29,10 +29,11 @@ function ServiciosScreen() {
     servicio.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const eliminarServicio = async (idServicio) => {
+  const eliminarServicio = async (id) => {
     try {
-      await axios.delete(`http://localhost:5433/api/servicios/eliminar/${idServicio}`);
-      setServicios(servicios.filter(servicio => servicio.idServicio !== idServicio));
+      const response = await axios.delete(`http://localhost:5433/api/servicios/eliminar/${id}`);
+      setServicios(servicios.filter(servicio => servicio.id !== id));
+      console.log(response.data); 
     } catch (error) {
       console.error('Error al eliminar el servicio:', error);
       setError('Error al eliminar el servicio');
@@ -76,6 +77,7 @@ function ServiciosScreen() {
               <table className="servicios-table">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Precio</th>
@@ -84,10 +86,11 @@ function ServiciosScreen() {
                 </thead>
                 <tbody>
                   {filteredServicios.map(servicio => (
-                    <tr key={servicio.idServicio}>
+                    <tr key={servicio.id}>
                       <td>
-                        <Link to={`/servicio/${servicio.idServicio}`}>{servicio.nombre}</Link>
+                      <Link to={`/ServicioEditScreen/?id=${servicio.id}`}>{servicio.id}</Link>
                       </td>
+                      <td>{servicio.id}</td>
                       <td>{servicio.descripcion}</td>
                       <td>${servicio.precio}</td>
                       <td>
